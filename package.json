@@ -1,5 +1,5 @@
 {
-  "name": "predictor-game",
+  "name": "predictor-wallet",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -17,15 +17,22 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "@nestjs/common": "^6.10.14",
+    "@nestjs/config": "^0.2.0",
     "@nestjs/core": "^6.10.14",
     "@nestjs/platform-express": "^6.10.14",
+    "@nestjs/typeorm": "^6.2.0",
+    "mysql": "^2.18.1",
+    "pg": "^7.18.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "typeorm": "^0.2.22",
+    "typeorm-naming-strategies": "^1.1.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.13.2",
