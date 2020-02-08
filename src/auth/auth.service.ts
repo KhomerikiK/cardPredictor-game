@@ -1,27 +1,29 @@
-import { Injectable } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
-import { JwtService } from '@nestjs/jwt';
+import { Injectable, HttpService } from '@nestjs/common';
+import { AuthenticateDto } from 'src/dto/authenticat.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersService: UsersService,
-    private readonly jwtService: JwtService
+    private readonly httpService: HttpService
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
-    if (user && user.password === pass) {
-      const { password, ...result } = user;
-      return result;
-    }
-    return null;
-  }
+  async authenticate(request){
 
-  async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+    try {
+      const authHeaders = request.headers.authorization
+      const jwt = authHeaders.replace('Bearer ', '');
+      const headersRequest = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwt}`,
+      };
+      //TODO::dinmic
+      const apiUrl = 'http://localhost:3000/verifyToken';
+      const result = await this.httpService.post(apiUrl, {}, { headers: headersRequest }).toPromise();
+      return result.data
+    } catch (error) {
+        return {status:0, data:error.message}
+      }
+   
   }
+  
 }
