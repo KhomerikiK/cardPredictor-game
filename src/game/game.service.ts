@@ -3,18 +3,25 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { GameEntity } from 'src/entities/game.entity';
 import { Repository } from 'typeorm';
 import { StatusEntity } from 'src/entities/status.entity';
-import { StartGameDto } from 'src/dto/startGame.dto';
 import { AccessTokenService } from 'src/access-token/access-token.service';
 import { CardService } from 'src/card/card.service';
 import { AccessTokenEntity } from 'src/entities/accessToken.entity';
 import { BetTypeEntity } from 'src/entities/betType.entity';
-import { accessSync } from 'fs';
 import { TransactionService } from 'src/transaction/transaction.service';
 var crypto = require("crypto");
 
 
 @Injectable()
 export class GameService {
+
+  protected compareOperators = {
+    'HIGH': function(a, b) { return a < b },
+    'LOW': function(a, b) { return a > b },
+  };
+
+  protected readonly depositEndpoint = '/deposit';
+  protected readonly WithdrawEndpoint = '/withdraw';
+
   constructor(
     @InjectRepository(GameEntity)
     protected readonly gameRepository: Repository<GameEntity>,
@@ -27,10 +34,7 @@ export class GameService {
     protected readonly transactionService: TransactionService
   ) {}
 
-  protected compareOperators = {
-    'HIGH': function(a, b) { return a < b },
-    'LOW': function(a, b) { return a > b },
-  };
+
 
   /*  */
   async getActiveSession(userId){
@@ -118,28 +122,32 @@ export class GameService {
     const userCardValue = game.card[0].valeu;
     const systemCard = await this.cardService.generate('USER', game);
     const result = this.compareOperators[prediction](userCardValue, systemCard.value)
-    
-    if (result) {
-      const status = await this.getWinStatuse();
-      game.status = status;
-      const wonAmount = game.betAmount * 2;
-      await this.transactionService._post(game.walletAccessToken, {amount: wonAmount}, '/withdraw')
+    const witdrawStatus =  await this.transactionService._post(game.walletAccessToken, {amount: game.betAmount}, this.WithdrawEndpoint)
+    if (witdrawStatus.status) {
+      
+      if (result) {
+        const status = await this.getWinStatuse();
+        game.status = status;
+        const wonAmount = game.betAmount * 2;
+        await this.transactionService._post(game.walletAccessToken, {amount: wonAmount}, this.depositEndpoint)
 
-    }else{
-      const status = await this.getLoseStatuse();
-      game.status = status;
-    }
-    const now = new Date();
-    game.finishedAt = now;
-    game.save();
-    return {
-      status:1,
-      data:{
-        bet_mount: game.betAmount,
-        game_status: game.status,
-        card_value: systemCard.value,
+      }else{
+        const status = await this.getLoseStatuse();
+        game.status = status;
+      }
+      const now = new Date();
+      game.finishedAt = now;
+      game.save();
+      return {
+        status:1,
+        data:{
+          bet_mount: game.betAmount,
+          game_status: game.status,
+          card_value: systemCard.value,
+        }
       }
     }
+    return witdrawStatus
   }
   
 

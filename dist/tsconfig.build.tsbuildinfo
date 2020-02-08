@@ -2201,10 +2201,6 @@
         "version": "27f1ae775a108ea61e7df38749a1db1e7ee0ce64d20d7a62ce5279e972d44f46",
         "signature": "b46339ca341b5911fb5c67da4470d18ef6ca6cdfd708b2469bf9d90abeef60be"
       },
-      "../src/dto/startgame.dto.ts": {
-        "version": "5044bc931bd50de3c06f2399c97cf341e1c436f101dfc85da9b07e5373a22c6f",
-        "signature": "b138f13f251f34bf8cb81f17e436037056195bcec7b1945729962348590dd2f8"
-      },
       "../node_modules/@types/jsonwebtoken/index.d.ts": {
         "version": "3ee1c4479498ce568cf7789174c181a68a7f7f16f7b338132ded0daf24a8a971",
         "signature": "3ee1c4479498ce568cf7789174c181a68a7f7f16f7b338132ded0daf24a8a971"
@@ -2250,12 +2246,12 @@
         "signature": "461594f37b71ee2c1fdb328809206251f22e19f390047828fe510c97544e0a8a"
       },
       "../src/transaction/transaction.service.ts": {
-        "version": "9942824fffeddff96733c6ed963902207c81f781b65d05cf720d029daf2002ec",
-        "signature": "1bc99b543720a84c51883a50a1a3a6f2d01243e0ad772616130a6c75e31f9a16"
+        "version": "423850e9e2be367d9b85a2a9a2a772c75c5f955efe5cb236fd1a5d483156b2d0",
+        "signature": "a007d777d0c13bd09647f4247da4064084cbb648a74aa13c39bd7fa089020ae1"
       },
       "../src/game/game.service.ts": {
-        "version": "127be213dbdc4f86a58f8ef460a5919a7339c1e9a0045bb16d463b7381d6b048",
-        "signature": "df971fa406e1304ff98d63cd8900e65c8cb8b5696d179419615f3d4fdcb2aa4f"
+        "version": "457ed59c119b2f12794169d56a7d7ee21d200016034eb173501a2be7fad012f0",
+        "signature": "45ec8a432ca8b4f522a6a8b1526696a709088ba14b17a2d90f443e1e728a9c92"
       },
       "../src/auth/auth.service.ts": {
         "version": "02e1c19534ab437e3dc8fc4dda1f948965c48cc94041cb509e84526840c0f1dc",
@@ -2263,7 +2259,7 @@
       },
       "../src/app.controller.ts": {
         "version": "bd81639dc2830a9f6a4a9b9aac6e48b49b5d3c162ef5a98635916ea3931f7f65",
-        "signature": "9a2d4998a84352d74f2ee2fbf268901bb728067e6308fd42b65aff86828c246d"
+        "signature": "d7976fc9d56681c2312b489ed2e38d4cd3120c690622aac44890436c54ebfafe"
       },
       "../src/config/config.module.ts": {
         "version": "37220768035037e4a0482fcbb4340b9f84b25c0ca7db9930717d76316506b69f",
@@ -2500,6 +2496,10 @@
       "../src/dto/endgame.dto.ts": {
         "version": "20f5a4d73736807c025f11a4e5f5aada536ffe96c531c271906e40bb6ffe8f3e",
         "signature": "10a4d1b2d0965373324dc5bc4744d03d452a903a24d98b22ea03b79ec6d79006"
+      },
+      "../src/dto/startgame.dto.ts": {
+        "version": "5044bc931bd50de3c06f2399c97cf341e1c436f101dfc85da9b07e5373a22c6f",
+        "signature": "b138f13f251f34bf8cb81f17e436037056195bcec7b1945729962348590dd2f8"
       },
       "../node_modules/@types/anymatch/index.d.ts": {
         "version": "48b52264fa193879a074197839dbb4796fa07e86350ff888e5361e06aa46df76",
@@ -7255,12 +7255,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../src/dto/startgame.dto.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.5/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.5/util.d.ts"
-      ],
       "../node_modules/@types/jsonwebtoken/index.d.ts": [
         "../node_modules/@types/node/ts3.5/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
@@ -7372,13 +7366,12 @@
         "../src/entities/game.entity.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/entities/status.entity.ts",
-        "../src/dto/startgame.dto.ts",
         "../src/access-token/access-token.service.ts",
         "../src/card/card.service.ts",
         "../src/entities/accesstoken.entity.ts",
         "../src/entities/bettype.entity.ts",
-        "../node_modules/@types/node/fs.d.ts",
         "../src/transaction/transaction.service.ts",
+        "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
@@ -7918,6 +7911,12 @@
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
       "../src/dto/endgame.dto.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../src/dto/startgame.dto.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -14083,7 +14082,6 @@
       "../src/entities/cardtype.entity.ts",
       "../src/entities/card.entity.ts",
       "../src/entities/game.entity.ts",
-      "../src/dto/startgame.dto.ts",
       "../node_modules/@types/jsonwebtoken/index.d.ts",
       "../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
       "../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
@@ -14157,6 +14155,7 @@
       "../src/access-token/access-token.module.ts",
       "../src/dto/authresponse.dto.ts",
       "../src/dto/endgame.dto.ts",
+      "../src/dto/startgame.dto.ts",
       "../node_modules/@types/anymatch/index.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",

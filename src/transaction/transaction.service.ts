@@ -4,7 +4,7 @@ import { ConfigService } from 'src/config/config.service';
 @Injectable()
 export class TransactionService {
     protected readonly depositEndpoint = '/deposit';
-    protected readonly WithdrawEndpoint = '/witdraw';
+    protected readonly WithdrawEndpoint = '/withdraw';
 
     constructor(
         protected readonly httpService: HttpService,
@@ -14,6 +14,7 @@ export class TransactionService {
     }
 
     async _post(jwt: string, postData:any, endpoint: string){
+        const url = this.configService.get('WALLET_SERVICE_URL') + endpoint;
         try {
            
             const headersRequest = {
@@ -21,11 +22,10 @@ export class TransactionService {
               'Authorization': `Bearer ${jwt}`,
             };
            
-            const url = this.configService.get('WALLET_SERVICE_URL') + endpoint;
             const result = await this.httpService.post(url, postData, { headers: headersRequest }).toPromise();
             return result.data
           } catch (error) {
-              return {status:0, data:error.message}
+              return {status:0, data:error.message + url}
           }
     }
 }
