@@ -1,6 +1,7 @@
 import { BaseEntity } from "./base.entity";
-import { PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, Entity, OneToMany } from "typeorm";
 import { StatusEntity } from "./status.entity";
+import { AccessTokenEntity } from "./accessToken.entity";
 
 @Entity('games')
 export class GameEntity extends BaseEntity {
@@ -19,6 +20,16 @@ export class GameEntity extends BaseEntity {
   })
   public betAmount: number;
 
+  @Column({
+    type: 'int',
+  })
+  public userId: number;
+
+  @Column({
+    type: 'int',
+  })
+  public statusId: number;
+
   @OneToOne(
     () => StatusEntity,
     transactionType => transactionType.game,
@@ -27,4 +38,19 @@ export class GameEntity extends BaseEntity {
       name: 'status_id',
   })
   public status: StatusEntity;
+
+  @Column({
+    type: 'timestamp',
+    name: 'finished_at',
+  })
+  public finishedAt: Date;
+
+  /**
+  * relation with user
+  */
+  @OneToMany(
+    () => AccessTokenEntity,
+    accessToken => accessToken.game,
+  )
+  public accessToken: AccessTokenEntity;
 }

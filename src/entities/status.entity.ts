@@ -2,7 +2,7 @@ import { BaseEntity } from "./base.entity";
 import { PrimaryGeneratedColumn, Column, OneToMany, Entity } from "typeorm";
 import { GameEntity } from "./game.entity";
 
-@Entity('status')
+@Entity('statuses')
 export class StatusEntity extends BaseEntity {
 
   @Column({

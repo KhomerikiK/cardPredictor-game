@@ -10,7 +10,21 @@ export class AuthService {
   ) {}
 
   async authenticate(request){
+    const access = await this.validateToken(request);
+    if (access.status) {
+      // return access
+      const userId = access.data.user_details.id;
+      const activeGame = await this.gameService.getActiveSession(userId);
+      if (activeGame.status) {
+        return activeGame
+      }else{
+        return await this.gameService.createNewSession(access.data);
+      }
+    }
+    return access
+  }
 
+  async validateToken(request){
     try {
       const authHeaders = request.headers.authorization
       const jwt = authHeaders.replace('Bearer ', '');
@@ -24,8 +38,7 @@ export class AuthService {
       return result.data
     } catch (error) {
         return {status:0, data:error.message}
-      }
-   
+    }
   }
   
 }
