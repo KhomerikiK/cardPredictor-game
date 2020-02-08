@@ -2250,8 +2250,8 @@
         "signature": "a007d777d0c13bd09647f4247da4064084cbb648a74aa13c39bd7fa089020ae1"
       },
       "../src/game/game.service.ts": {
-        "version": "7a20bfa2116199ce86c5f6863ce8dffd74c7acee0d237369ce99bf33ec9e6726",
-        "signature": "45ec8a432ca8b4f522a6a8b1526696a709088ba14b17a2d90f443e1e728a9c92"
+        "version": "01bf957d0ecc5450044d78934e040e6a441b30aefc19d86c6b178411f28536b1",
+        "signature": "2bbb6fa1ac5447d0a306de8dca0b7f5eff27a34969c3243be9a8c86bd317692d"
       },
       "../src/auth/auth.service.ts": {
         "version": "02e1c19534ab437e3dc8fc4dda1f948965c48cc94041cb509e84526840c0f1dc",
@@ -14094,8 +14094,8 @@
       "../src/entities/bettype.entity.ts",
       "../src/config/config.service.ts",
       "../src/transaction/transaction.service.ts",
+      "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
-      "../src/app.controller.ts",
       "../src/config/config.module.ts",
       "../node_modules/typeorm-naming-strategies/snake-naming.strategy.d.ts",
       "../node_modules/typeorm-naming-strategies/index.d.ts",
@@ -14193,7 +14193,7 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../src/game/game.service.ts"
+      "../src/app.controller.ts"
     ]
   },
   "version": "3.7.5"

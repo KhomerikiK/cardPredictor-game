@@ -21,6 +21,7 @@ export class GameService {
 
   protected readonly depositEndpoint = '/deposit';
   protected readonly WithdrawEndpoint = '/withdraw';
+  protected readonly logOutEndpoint = '/logOut';
 
   constructor(
     @InjectRepository(GameEntity)
@@ -36,7 +37,13 @@ export class GameService {
 
 
 
-  /*  */
+ 
+  /**
+   * check if exists active session of the game on current user
+   * if doesnt exists return back
+   * if exists but token expired refresh token
+   * @param userId
+   */
   async getActiveSession(userId){
     const activeGame = await this.gameRepository.findOne({
       where:{
@@ -61,17 +68,21 @@ export class GameService {
     }    
   }
 
+  /**
+   * create new session of the game
+   * @param userId
+   */
   async createNewSession(access: any){
     try {
       const pendingType = await this.getPendingStatus();
       const user =  access.user_details;
       var game = new GameEntity();
-      console.log('here');
       var token = crypto.randomBytes(20).toString('hex');
 
       game.walletAccessToken = access.access_token;
       game.userId = user.id;
       game.status = pendingType;
+      game.createdAt = new Date();
       game.token = token;
       await game.save();
       
@@ -92,7 +103,15 @@ export class GameService {
     
   }
 
-  /*  */
+  /**
+   * start of the game
+   * bet the amoun
+   * change game status
+   * refresh the token
+   * generate random card and asign to the game 
+   * @param accessToken
+   * @param amount
+   */
   async startGame(accessToken:AccessTokenEntity, amount:number){
     
     var game = accessToken.game;
@@ -115,23 +134,32 @@ export class GameService {
 
   }
 
+  /**
+   * final stage of the game
+   * @param accessToken
+   * @param prediction
+   */
   async endGame(accessToken:AccessTokenEntity, prediction:string){
-    
     
     var wonAmount = 0;
     var lostAmount = 0
     var game = accessToken.game;
+
     const userCardValue = game.card[0].value;
-    const systemCard = await this.cardService.generate('USER', game);
+    const systemCard = await this.cardService.generate('SYSTEM', game);
     const result = this.compareOperators[prediction](userCardValue, systemCard.value)
-    const witdrawStatus =  await this.transactionService._post(game.walletAccessToken, {amount: game.betAmount}, this.WithdrawEndpoint)
+    /* withdrow amount form users wallet */
+    const witdrawStatus =  await this.transactionService._post(game.walletAccessToken, {amount: game.betAmount}, this.WithdrawEndpoint);
+    var newAccessToken = witdrawStatus.data.access_token
+    /* if money charged successfully */
     if (witdrawStatus.status) {
-      
+      /* if user won the game */
       if (result) {
         const status = await this.getWinStatuse();
         game.status = status;
         wonAmount = game.betAmount * 2;
-        await this.transactionService._post(game.walletAccessToken, {amount: wonAmount}, this.depositEndpoint)
+        const depositStatus = await this.transactionService._post(game.walletAccessToken, {amount: wonAmount}, this.depositEndpoint)
+        newAccessToken = depositStatus.data.access_token
 
       }else{
         lostAmount = game.betAmount;
@@ -141,6 +169,7 @@ export class GameService {
       const now = new Date();
       game.finishedAt = now;
       game.save();
+      await this.transactionService._post(newAccessToken, {}, this.logOutEndpoint)
       return {
         status:1,
         data:{
