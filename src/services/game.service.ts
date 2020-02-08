@@ -62,6 +62,8 @@ export class GameService {
     try {
       const pendingType = await this.getPendingStatus();
       var game = new GameEntity();
+      console.log('here');
+      
       game.walletAccessToken = access.access_token;
       game.userId = access.user_details.id;
       game.status = pendingType;
@@ -84,6 +86,8 @@ export class GameService {
   /*  */
   async startGame(accessToken:AccessTokenEntity, amount:number){
 
+    console.log('2323');
+    
     var game = accessToken.game;
     const inprogressStatus = await this.getInprogressStatus();
     game.betAmount = amount;
@@ -114,8 +118,11 @@ export class GameService {
       game.status = status;
 
     }
-
+    const now = new Date();
+    game.finishedAt = now;
     game.save();
+
+    return game
   }
   
 

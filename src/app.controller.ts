@@ -6,6 +6,7 @@ import { StartGameDto } from './dto/startGame.dto';
 import { EndGameDto } from './dto/endGame.dto';
 import { GameService } from './services/game.service';
 import { AccessTokenService } from './access-token/access-token.service';
+import { AuthResponse } from './dto/authResponse.dto';
 
 @Controller()
 export class AppController {
@@ -17,8 +18,8 @@ export class AppController {
     {}
 
     @Post('authenticate')
-    async login(@Request() authDto: AuthenticateDto) {        
-        return await this.authService.authenticate(authDto);
+    async authenticate(@Request() authDto: AuthenticateDto) {        
+        return  await this.authService.authenticate(authDto);
     }
 
 
@@ -52,7 +53,9 @@ export class AppController {
         return {status:0, data: 'stage has finished'}
       }
   
-      return await this.gameService.endGame(accessToken, req.body.prediction.toUpperCase());    }
+      return await this.gameService.endGame(accessToken, req.body.prediction.toUpperCase());   
+
+     }
 
   
 }

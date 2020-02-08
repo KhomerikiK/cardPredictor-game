@@ -2250,20 +2250,24 @@
         "signature": "6d2486172a20963f558ce8548ec626f94e598abe45caa05b8b5314d92842d59c"
       },
       "../src/services/game.service.ts": {
-        "version": "fc85b8126c0924ef274c2669b2ded77f89fffce1e49a84f63e300cecf54c4cca",
-        "signature": "61020556649fa67ee474cb1f39b47c705932cc4e9458ad8aa8a0a6b46805c8ee"
+        "version": "8fbc7a888620027f68cc6425336b5e19f1bfd563e06d56b73081dc1e8c740422",
+        "signature": "34572772bb4206ad680ede433e974136a0f1cc77923bf6c8b597eebcbf64340b"
       },
       "../src/auth/auth.service.ts": {
-        "version": "e9eb3c6005c793f7c10cd8954dd03c02a0c66a042437eb70bb703528446f6406",
+        "version": "de057af536d8405d5c65f41ed5234dc7e0d0762e9b85fde154457c4150f07396",
         "signature": "43f1c4ffb580339c11bc405df7e0fc6dcac3830a85d78591997a3d1890467e52"
       },
       "../src/dto/endgame.dto.ts": {
         "version": "bca03116096e6f111717d61ff718d62fcf17ff360245c59426be0f15881f0e0b",
         "signature": "054056fa9f9486b0d17fc3d92c5be4e678b7be6b514586a3525fd8d96b3a3d99"
       },
+      "../src/dto/authresponse.dto.ts": {
+        "version": "ff2660eb1a9a33b8875685192538708d6bb0e3fdce2a233d970063314980db45",
+        "signature": "e647f73466e139c8506369dfd28eac26ec6a29956c7bd432a060844ece5c17a1"
+      },
       "../src/app.controller.ts": {
-        "version": "d06c4f76862121064c004261b40373ce3c70ee76cd3302f092332988779cfeb0",
-        "signature": "a9facd864d8419f32bcca9df7c2ef9e52e179281de4e13400d21c204468ee7c3"
+        "version": "6ba932a95b1609b0896dd17dac0874c42e209d923f2e78c2966412c924ab085f",
+        "signature": "8d2fb737190d4de23998aed724abb4985e5538e83f371efd518fdd8eb47ac134"
       },
       "../src/config/config.service.ts": {
         "version": "034e87ab78650b16af8a6a05438d9f12cedcda2e0d9beeea6aaa520c30f7e30d",
@@ -7363,6 +7367,12 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../src/dto/authresponse.dto.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "../src/app.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/passport/index.d.ts",
@@ -7372,6 +7382,7 @@
         "../src/dto/endgame.dto.ts",
         "../src/services/game.service.ts",
         "../src/access-token/access-token.service.ts",
+        "../src/dto/authresponse.dto.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -12753,6 +12764,7 @@
       ],
       "../src/app.controller.ts": [
         "../src/entities/card.entity.ts",
+        "../src/entities/index.ts",
         "../src/auth/auth.service.ts",
         "../src/services/game.service.ts",
         "../src/access-token/access-token.service.ts",
@@ -13979,6 +13991,7 @@
       "../src/card/card.service.ts",
       "../src/auth/auth.service.ts",
       "../src/dto/endgame.dto.ts",
+      "../src/dto/authresponse.dto.ts",
       "../src/app.controller.ts",
       "../src/config/config.service.ts",
       "../src/config/config.module.ts",
