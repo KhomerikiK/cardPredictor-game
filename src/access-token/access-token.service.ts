@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AccessTokenEntity, GameEntity } from 'src/entities';
+import { AccessTokenEntity } from 'src/entities/accessToken.entity';
+import { GameEntity } from 'src/entities/game.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 
@@ -56,6 +57,8 @@ export class AccessTokenService {
      * @return void
      * */
     async expire(accessToken: AccessTokenEntity){
+        console.log('expire functiond');
+
         const now = new Date();
         accessToken.expiredAt = now;//fill expire_at field to detect if expired
         accessToken.save();
@@ -66,6 +69,8 @@ export class AccessTokenService {
      * @return AccessTokenEntity
      * */
     async refreshToken(accessToken: AccessTokenEntity){
+        console.log('refrshtoken functiond');
+        
         await this.expire(accessToken);//expire the old accessToken
         const payload = { 
             token: accessToken.game.token, 

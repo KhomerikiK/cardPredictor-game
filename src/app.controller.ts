@@ -52,7 +52,6 @@ export class AppController {
       if (accessToken.game.status.label != 'IN_PROGRESS') {
         return {status:0, data: 'stage has finished'}
       }
-  
       return await this.gameService.endGame(accessToken, req.body.prediction.toUpperCase());   
 
      }

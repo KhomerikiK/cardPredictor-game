@@ -12,13 +12,13 @@ export class AuthService {
   async authenticate(request){
     const access = await this.validateToken(request);
     if (access.status) {
+      
       const userId = access.data.user_details.id;
       const activeGame = await this.gameService.getActiveSession(userId);
       if (activeGame.status) {
         return activeGame
-      }else{
+      }else{        
         return await this.gameService.createNewSession(access.data);
-
       }
     }
     return access
@@ -35,7 +35,10 @@ export class AuthService {
       //TODO::dinmic
       const apiUrl = 'http://localhost:3000/verifyToken';
       const result = await this.httpService.post(apiUrl, {}, { headers: headersRequest }).toPromise();
+      console.log(result.data);
+
       return result.data
+      
     } catch (error) {
         return {status:0, data:error.message}
     }

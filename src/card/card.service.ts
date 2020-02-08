@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CardTypeEntity, GameEntity } from 'src/entities';
+import { CardTypeEntity } from 'src/entities/cardType.entity';
 import { Repository } from 'typeorm';
 import { CardEntity } from 'src/entities/card.entity';
+import { GameEntity } from 'src/entities/game.entity';
 
 @Injectable()
 export class CardService {

@@ -6,8 +6,11 @@ import { StatusEntity } from 'src/entities/status.entity';
 import { StartGameDto } from 'src/dto/startGame.dto';
 import { AccessTokenService } from 'src/access-token/access-token.service';
 import { CardService } from 'src/card/card.service';
-import { AccessTokenEntity } from 'src/entities';
+import { AccessTokenEntity } from 'src/entities/accessToken.entity';
 import { BetTypeEntity } from 'src/entities/betType.entity';
+import { accessSync } from 'fs';
+var crypto = require("crypto");
+
 
 @Injectable()
 export class GameService {
@@ -38,9 +41,7 @@ export class GameService {
         finishedAt: null,
         userId: userId
       },
-
       relations: ['status',],
-
     })
     if (typeof activeGame == 'undefined') {
       return {status: 0, data:'There is no Active game sessions'}
@@ -61,20 +62,26 @@ export class GameService {
   async createNewSession(access: any){
     try {
       const pendingType = await this.getPendingStatus();
+      const user =  access.user_details;
       var game = new GameEntity();
       console.log('here');
-      
+      var token = crypto.randomBytes(20).toString('hex');
+
       game.walletAccessToken = access.access_token;
-      game.userId = access.user_details.id;
+      game.userId = user.id;
       game.status = pendingType;
+      game.token = token;
       await game.save();
       
       const accessToken = await this.accesstokenService.createNew(game);
       return { 
         status: 1, 
         data: {
-          game: game, 
-          token: accessToken
+          user_email: user.email,
+          user_balance: user.balance,
+          game_token: game.token, 
+          game_status: game.status, 
+          game_service_access_token: accessToken.token
         }
       }  
     } catch (error) {
@@ -85,17 +92,23 @@ export class GameService {
 
   /*  */
   async startGame(accessToken:AccessTokenEntity, amount:number){
-
-    console.log('2323');
     
     var game = accessToken.game;
     const inprogressStatus = await this.getInprogressStatus();
     game.betAmount = amount;
     game.status = inprogressStatus;
     await game.save()
-    console.log(inprogressStatus);
-    
-    return await this.cardService.generate('USER', game);
+    const refreshToken = await this.accesstokenService.refreshToken(accessToken);
+    const generatedCard =  await this.cardService.generate('USER', game);
+    return {
+      status:1,
+      data:{
+        bet_mount: amount,
+        game_status: game.status,
+        card_value: generatedCard.value,
+        game_access_token: refreshToken.token
+      }
+    }
 
 
   }
@@ -104,19 +117,21 @@ export class GameService {
     
     
     var game = accessToken.game;
+    console.log(game);
+    
     const userCardValue = game.card[0].valeu;
     
     const systemCard = await this.cardService.generate('USER', game);
+    console.log(systemCard);
+    
     const result = this.compareOperators[prediction](userCardValue, systemCard.value)
 
     if (result) {
       const status = await this.getWinStatuse();
       game.status = status;
-
     }else{
       const status = await this.getLoseStatuse();
       game.status = status;
-
     }
     const now = new Date();
     game.finishedAt = now;
