@@ -4,7 +4,7 @@ import { DatabaseModule } from './database.module';
 import * as path from 'path';
 import { AppController } from './app.controller';
 import { AuthService } from './auth/auth.service';
-import { GameService } from './services/game.service';
+import { GameService } from './game/game.service';
 import { testm } from './middlewares/testm.middleware';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
@@ -12,6 +12,7 @@ import { jwtConstants } from './constants';
 import { JwtStrategy } from './auth/jwt.strategy';
 import { AccessTokenService } from './access-token/access-token.service';
 import { CardService } from './card/card.service';
+import { TransactionService } from './transaction/transaction.service';
 
 
 @Module({
@@ -33,7 +34,7 @@ import { CardService } from './card/card.service';
  
   
   controllers: [AppController],
-  providers: [AuthService, GameService, JwtStrategy, AccessTokenService, CardService, CardService],
+  providers: [AuthService, GameService, JwtStrategy, AccessTokenService, CardService, CardService, TransactionService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

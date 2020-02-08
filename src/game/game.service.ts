@@ -9,6 +9,7 @@ import { CardService } from 'src/card/card.service';
 import { AccessTokenEntity } from 'src/entities/accessToken.entity';
 import { BetTypeEntity } from 'src/entities/betType.entity';
 import { accessSync } from 'fs';
+import { TransactionService } from 'src/transaction/transaction.service';
 var crypto = require("crypto");
 
 
@@ -17,16 +18,13 @@ export class GameService {
   constructor(
     @InjectRepository(GameEntity)
     protected readonly gameRepository: Repository<GameEntity>,
-
     @InjectRepository(StatusEntity)
     protected readonly statusRepository: Repository<StatusEntity>,
-
     @InjectRepository(StatusEntity)
     protected readonly betTypeRepository: Repository<BetTypeEntity>,
-
     protected readonly accesstokenService: AccessTokenService,
-
-    protected readonly cardService: CardService
+    protected readonly cardService: CardService,
+    protected readonly transactionService: TransactionService
   ) {}
 
   protected compareOperators = {
@@ -117,18 +115,16 @@ export class GameService {
     
     
     var game = accessToken.game;
-    console.log(game);
-    
     const userCardValue = game.card[0].valeu;
-    
     const systemCard = await this.cardService.generate('USER', game);
-    console.log(systemCard);
-    
     const result = this.compareOperators[prediction](userCardValue, systemCard.value)
-
+    
     if (result) {
       const status = await this.getWinStatuse();
       game.status = status;
+      const wonAmount = game.betAmount * 2;
+      await this.transactionService._post(game.walletAccessToken, {amount: wonAmount}, '/withdraw')
+
     }else{
       const status = await this.getLoseStatuse();
       game.status = status;
@@ -136,8 +132,14 @@ export class GameService {
     const now = new Date();
     game.finishedAt = now;
     game.save();
-
-    return game
+    return {
+      status:1,
+      data:{
+        bet_mount: game.betAmount,
+        game_status: game.status,
+        card_value: systemCard.value,
+      }
+    }
   }
   
 
@@ -150,10 +152,10 @@ export class GameService {
   }
 
   async getWinStatuse(){
-    return this.statusRepository.findOne({where:{label:'USER_WIN'}})
+    return this.statusRepository.findOne({where:{label:'WIN'}})
   }
 
   async getLoseStatuse(){
-    return this.statusRepository.findOne({where:{label:'USER_LOSE'}})
+    return this.statusRepository.findOne({where:{label:'LOSE'}})
   }
 }

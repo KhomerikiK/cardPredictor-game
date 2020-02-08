@@ -2,11 +2,8 @@ import { Controller, Request, Post, UseGuards, Get, UnauthorizedException } from
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth/auth.service';
 import { AuthenticateDto } from './dto/authenticat.dto';
-import { StartGameDto } from './dto/startGame.dto';
-import { EndGameDto } from './dto/endGame.dto';
-import { GameService } from './services/game.service';
+import { GameService } from './game/game.service';
 import { AccessTokenService } from './access-token/access-token.service';
-import { AuthResponse } from './dto/authResponse.dto';
 
 @Controller()
 export class AppController {
@@ -26,17 +23,16 @@ export class AppController {
     @UseGuards(AuthGuard('jwt'))
     @Post('startGame')
     async startGame(@Request() req) {  
-      
       const auth = req.headers.authorization;
       const jwt = auth.replace('Bearer ', '');
       const accessToken = await this.accessTokenService.getByToken(jwt);
       if (accessToken.expiredAt != null) {
         throw new UnauthorizedException();
-      }      
+      }     
+      
       if (accessToken.game.status.label != 'PENDING') {
         return {status:0, data: 'stage has finished'}
       }
-
       return await this.gameService.startGame(accessToken, req.body.amount);
     }
 
