@@ -1,21 +1,22 @@
 import { BaseEntity } from "./base.entity";
 import { PrimaryGeneratedColumn, Column, OneToMany, Entity } from "typeorm";
 import { GameEntity } from "./game.entity";
+import { CardEntity } from "./card.entity";
 
-@Entity('status')
-export class BetCondition extends BaseEntity {
+@Entity('card_types')
+export class CardTypeEntity extends BaseEntity {
 
     @Column({
         type: 'varchar',
       })
-      public lable: string;
+      public label: string;
     
       /**
       * relation with transactions
       */
       @OneToMany(
-        () => GameEntity,
-        game => game.status
+        () => CardEntity,
+        card => card.type
       )
-      public game: GameEntity;
+      public card: CardEntity;
 }

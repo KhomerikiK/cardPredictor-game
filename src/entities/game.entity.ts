@@ -2,6 +2,7 @@ import { BaseEntity } from "./base.entity";
 import { PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, Entity, OneToMany } from "typeorm";
 import { StatusEntity } from "./status.entity";
 import { AccessTokenEntity } from "./accessToken.entity";
+import { CardEntity } from "./card.entity";
 
 @Entity('games')
 export class GameEntity extends BaseEntity {
@@ -32,8 +33,8 @@ export class GameEntity extends BaseEntity {
 
   @OneToOne(
     () => StatusEntity,
-    transactionType => transactionType.game,
-)
+    status => status.game,
+  )
   @JoinColumn({
       name: 'status_id',
   })
@@ -53,4 +54,14 @@ export class GameEntity extends BaseEntity {
     accessToken => accessToken.game,
   )
   public accessToken: AccessTokenEntity;
+
+
+    /**
+  * relation with user
+  */
+ @OneToMany(
+  () => CardEntity,
+    card => card.game,
+  )
+  public card: CardEntity;
 }

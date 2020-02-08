@@ -1,16 +1,18 @@
-import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Get, UnauthorizedException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth/auth.service';
 import { AuthenticateDto } from './dto/authenticat.dto';
 import { StartGameDto } from './dto/startGame.dto';
 import { EndGameDto } from './dto/endGame.dto';
 import { GameService } from './services/game.service';
+import { AccessTokenService } from './access-token/access-token.service';
 
 @Controller()
 export class AppController {
     constructor(
       private readonly authService: AuthService,
-      private readonly gameService: GameService
+      private readonly gameService: GameService,
+      private readonly accessTokenService: AccessTokenService
     )
     {}
 
@@ -22,8 +24,21 @@ export class AppController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('startGame')
-    async startGame(@Request() req) {        
-        return await this.gameService.startGame(req);
+    async startGame(@Request() req) {  
+      
+      const auth = req.headers.authorization;
+      const jwt = auth.replace('Bearer ', '');
+      const accessToken = await this.accessTokenService.getByToken(jwt);
+      if (accessToken.expiredAt != null) {
+        throw new UnauthorizedException();
+      }      
+
+      if (accessToken.game.status.label != 'PENDING') {
+        return {status:0, data: 'stage has finished'}
+      }
+
+
+      return await this.gameService.startGame(accessToken, req.amount);
     }
 
     @UseGuards(AuthGuard('jwt'))

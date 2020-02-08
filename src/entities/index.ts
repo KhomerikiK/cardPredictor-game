@@ -1,16 +1,21 @@
 import { GameEntity } from './game.entity';
-import { BetCondition } from './betCondition.entity';
+import { BetTypeEntity } from './betType.entity';
 import { StatusEntity } from './status.entity';
 import { AccessTokenEntity } from './accessToken.entity';
+import { CardEntity } from './card.entity';
+import { CardTypeEntity } from './cardType.entity';
 
+export * from './cardType.entity';
 export * from './accessToken.entity';
 export * from './game.entity';
-export * from './betCondition.entity';
+export * from './cardType.entity';
 export * from './status.entity';
 
 export default [
+    CardTypeEntity,
+    CardEntity,
     GameEntity,
-    BetCondition,
+    BetTypeEntity,
     StatusEntity,
     AccessTokenEntity
 ];

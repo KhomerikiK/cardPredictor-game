@@ -33,8 +33,9 @@ export class AccessTokenService {
      * */
     async getByToken(token: string){
         return await this.accessTokenRepository.findOne({
-            relations: ['user'],
-            where: {token: token}})
+            relations: ['game','game.status'],
+            where: {token: token}
+        })
     }
 
     /**

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { StatusEntity } from 'src/entities/status.entity';
 import { StartGameDto } from 'src/dto/startGame.dto';
 import { AccessTokenService } from 'src/access-token/access-token.service';
+import { CardService } from 'src/card/card.service';
 
 @Injectable()
 export class GameService {
@@ -15,7 +16,12 @@ export class GameService {
     @InjectRepository(StatusEntity)
     protected readonly statusRepository: Repository<StatusEntity>,
 
-    protected readonly accesstokenService: AccessTokenService
+    @InjectRepository(StatusEntity)
+    protected readonly betTypeRepository: Repository<StatusEntity>,
+
+    protected readonly accesstokenService: AccessTokenService,
+
+    protected readonly cardService: CardService
   ) {}
 
   /*  */
@@ -47,7 +53,7 @@ export class GameService {
 
   async createNewSession(access: any){
     try {
-      const pendingType = await this.getPendingType();
+      const pendingType = await this.getPendingStatus();
       var game = new GameEntity();
       game.walletAccessToken = access.access_token;
       game.userId = access.user_details.id;
@@ -69,15 +75,27 @@ export class GameService {
   }
 
   /*  */
-  async startGame(startGameDto: StartGameDto){
+  async startGame(accessToken, amount){
+
+    var game = accessToken.game;
+    const inprogressStatus = await this.getInprogressStatus();
+    game.amount = amount;
+    game.status = inprogressStatus;
+    await game.save()
+    console.log(inprogressStatus);
     
+    return await this.cardService.generate('USER', game);
+
+
   }
   
-  async getInprogressType(){
-    return this.statusRepository.findOne({where:{lable:'IN_PROGRESS'}})
+
+
+  async getInprogressStatus(){
+    return this.statusRepository.findOne({where:{label:'IN_PROGRESS'}})
   }
 
-  async getPendingType(){
-    return this.statusRepository.findOne({where:{lable:'PENDING'}})
+  async getPendingStatus(){
+    return this.statusRepository.findOne({where:{label:'PENDING'}})
   }
 }

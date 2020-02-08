@@ -8,7 +8,7 @@ export class StatusEntity extends BaseEntity {
   @Column({
     type: 'varchar',
   })
-  public lable: string;
+  public label: string;
 
   /**
   * relation with transactions

@@ -11,6 +11,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './auth/jwt.strategy';
 import { AccessTokenService } from './access-token/access-token.service';
+import { CardService } from './card/card.service';
 
 
 @Module({
@@ -32,7 +33,7 @@ import { AccessTokenService } from './access-token/access-token.service';
  
   
   controllers: [AppController],
-  providers: [AuthService, GameService, JwtStrategy, AccessTokenService],
+  providers: [AuthService, GameService, JwtStrategy, AccessTokenService, CardService, CardService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
