@@ -1,13 +1,17 @@
-import { Column, PrimaryGeneratedColumn, BaseEntity as OrmBaseEntity } from 'typeorm';
+import {
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity as OrmBaseEntity
+} from "typeorm";
 
 export class BaseEntity extends OrmBaseEntity {
   @PrimaryGeneratedColumn()
   public id: number;
 
   @Column({
-    type: 'timestamp',
-    name: 'created_at',
-    default: new Date(),
+    type: "timestamp",
+    name: "created_at",
+    default: new Date()
   })
   public createdAt!: Date;
 

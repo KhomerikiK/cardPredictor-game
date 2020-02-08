@@ -1,3 +1,3 @@
 export class StartGameDto {
-    amount: number
+  amount: number;
 }

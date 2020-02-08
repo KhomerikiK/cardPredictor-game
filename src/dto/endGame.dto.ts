@@ -1,3 +1,3 @@
 export class EndGameDto {
-    condition: string
+  condition: string;
 }
