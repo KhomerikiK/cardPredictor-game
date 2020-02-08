@@ -8,8 +8,12 @@ export class BetTypeEntity extends BaseEntity {
     @Column({
         type: 'varchar',
       })
-      public lable: string;
-    
+      public label: string;
+
+      @Column({
+        type: 'varchar',
+      })
+      public symbol: string;
       /**
       * relation with transactions
       */

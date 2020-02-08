@@ -6,6 +6,8 @@ import { StatusEntity } from 'src/entities/status.entity';
 import { StartGameDto } from 'src/dto/startGame.dto';
 import { AccessTokenService } from 'src/access-token/access-token.service';
 import { CardService } from 'src/card/card.service';
+import { AccessTokenEntity } from 'src/entities';
+import { BetTypeEntity } from 'src/entities/betType.entity';
 
 @Injectable()
 export class GameService {
@@ -17,12 +19,17 @@ export class GameService {
     protected readonly statusRepository: Repository<StatusEntity>,
 
     @InjectRepository(StatusEntity)
-    protected readonly betTypeRepository: Repository<StatusEntity>,
+    protected readonly betTypeRepository: Repository<BetTypeEntity>,
 
     protected readonly accesstokenService: AccessTokenService,
 
     protected readonly cardService: CardService
   ) {}
+
+  protected compareOperators = {
+    'HIGH': function(a, b) { return a < b },
+    'LOW': function(a, b) { return a > b },
+  };
 
   /*  */
   async getActiveSession(userId){
@@ -75,11 +82,11 @@ export class GameService {
   }
 
   /*  */
-  async startGame(accessToken, amount){
+  async startGame(accessToken:AccessTokenEntity, amount:number){
 
     var game = accessToken.game;
     const inprogressStatus = await this.getInprogressStatus();
-    game.amount = amount;
+    game.betAmount = amount;
     game.status = inprogressStatus;
     await game.save()
     console.log(inprogressStatus);
@@ -88,8 +95,29 @@ export class GameService {
 
 
   }
-  
 
+  async endGame(accessToken:AccessTokenEntity, prediction:string){
+    
+    
+    var game = accessToken.game;
+    const userCardValue = game.card[0].valeu;
+    
+    const systemCard = await this.cardService.generate('USER', game);
+    const result = this.compareOperators[prediction](userCardValue, systemCard.value)
+
+    if (result) {
+      const status = await this.getWinStatuse();
+      game.status = status;
+
+    }else{
+      const status = await this.getLoseStatuse();
+      game.status = status;
+
+    }
+
+    game.save();
+  }
+  
 
   async getInprogressStatus(){
     return this.statusRepository.findOne({where:{label:'IN_PROGRESS'}})
@@ -97,5 +125,13 @@ export class GameService {
 
   async getPendingStatus(){
     return this.statusRepository.findOne({where:{label:'PENDING'}})
+  }
+
+  async getWinStatuse(){
+    return this.statusRepository.findOne({where:{label:'USER_WIN'}})
+  }
+
+  async getLoseStatuse(){
+    return this.statusRepository.findOne({where:{label:'USER_LOSE'}})
   }
 }

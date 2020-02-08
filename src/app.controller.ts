@@ -32,20 +32,27 @@ export class AppController {
       if (accessToken.expiredAt != null) {
         throw new UnauthorizedException();
       }      
-
       if (accessToken.game.status.label != 'PENDING') {
         return {status:0, data: 'stage has finished'}
       }
 
-
-      return await this.gameService.startGame(accessToken, req.amount);
+      return await this.gameService.startGame(accessToken, req.body.amount);
     }
 
     @UseGuards(AuthGuard('jwt'))
     @Post('endGame')
-    async endGame(@Request() endgameDto: EndGameDto ) {        
-        return ;
-    }
+    async endGame(@Request() req ) {        
+      const auth = req.headers.authorization;
+      const jwt = auth.replace('Bearer ', '');
+      const accessToken = await this.accessTokenService.getByToken(jwt);
+      if (accessToken.expiredAt != null) {
+        throw new UnauthorizedException();
+      }      
+      if (accessToken.game.status.label != 'IN_PROGRESS') {
+        return {status:0, data: 'stage has finished'}
+      }
+  
+      return await this.gameService.endGame(accessToken, req.body.prediction.toUpperCase());    }
 
   
 }
