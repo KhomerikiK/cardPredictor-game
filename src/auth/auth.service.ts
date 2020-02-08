@@ -1,10 +1,12 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { AuthenticateDto } from 'src/dto/authenticat.dto';
+import { GameService } from 'src/services/game.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly httpService: HttpService
+    private readonly httpService: HttpService,
+    private readonly gameService: GameService,
   ) {}
 
   async authenticate(request){

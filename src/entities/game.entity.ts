@@ -1,7 +1,8 @@
 import { BaseEntity } from "./base.entity";
-import { PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from "typeorm";
+import { PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, Entity } from "typeorm";
 import { StatusEntity } from "./status.entity";
 
+@Entity('games')
 export class GameEntity extends BaseEntity {
   @Column({
     type: 'varchar',

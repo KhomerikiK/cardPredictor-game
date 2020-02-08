@@ -1,7 +1,8 @@
 import { BaseEntity } from "./base.entity";
-import { PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { PrimaryGeneratedColumn, Column, OneToMany, Entity } from "typeorm";
 import { GameEntity } from "./game.entity";
 
+@Entity('status')
 export class StatusEntity extends BaseEntity {
 
   @Column({

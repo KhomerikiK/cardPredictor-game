@@ -4,6 +4,7 @@ import { DatabaseModule } from './database.module';
 import * as path from 'path';
 import { AppController } from './app.controller';
 import { AuthService } from './auth/auth.service';
+import { GameService } from './services/game.service';
 
 
 @Module({
@@ -19,6 +20,6 @@ import { AuthService } from './auth/auth.service';
  
   
   controllers: [AppController],
-  providers: [AuthService],
+  providers: [AuthService, GameService],
 })
 export class AppModule {}
