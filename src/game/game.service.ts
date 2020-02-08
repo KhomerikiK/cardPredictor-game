@@ -15,8 +15,8 @@ var crypto = require("crypto");
 export class GameService {
 
   protected compareOperators = {
-    'HIGH': function(a, b) { return a < b },
-    'LOW': function(a, b) { return a > b },
+    'HIGH': function(a, b) { return a > b },
+    'LOW': function(a, b) { return a < b },
   };
 
   protected readonly depositEndpoint = '/deposit';
@@ -118,8 +118,10 @@ export class GameService {
   async endGame(accessToken:AccessTokenEntity, prediction:string){
     
     
+    var wonAmount = 0;
+    var lostAmount = 0
     var game = accessToken.game;
-    const userCardValue = game.card[0].valeu;
+    const userCardValue = game.card[0].value;
     const systemCard = await this.cardService.generate('USER', game);
     const result = this.compareOperators[prediction](userCardValue, systemCard.value)
     const witdrawStatus =  await this.transactionService._post(game.walletAccessToken, {amount: game.betAmount}, this.WithdrawEndpoint)
@@ -128,10 +130,11 @@ export class GameService {
       if (result) {
         const status = await this.getWinStatuse();
         game.status = status;
-        const wonAmount = game.betAmount * 2;
+        wonAmount = game.betAmount * 2;
         await this.transactionService._post(game.walletAccessToken, {amount: wonAmount}, this.depositEndpoint)
 
       }else{
+        lostAmount = game.betAmount;
         const status = await this.getLoseStatuse();
         game.status = status;
       }
@@ -142,6 +145,8 @@ export class GameService {
         status:1,
         data:{
           bet_mount: game.betAmount,
+          won_amount: wonAmount,
+          lost_amount: lostAmount,
           game_status: game.status,
           card_value: systemCard.value,
         }

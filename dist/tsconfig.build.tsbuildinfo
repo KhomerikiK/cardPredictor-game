@@ -2250,7 +2250,7 @@
         "signature": "a007d777d0c13bd09647f4247da4064084cbb648a74aa13c39bd7fa089020ae1"
       },
       "../src/game/game.service.ts": {
-        "version": "457ed59c119b2f12794169d56a7d7ee21d200016034eb173501a2be7fad012f0",
+        "version": "7a20bfa2116199ce86c5f6863ce8dffd74c7acee0d237369ce99bf33ec9e6726",
         "signature": "45ec8a432ca8b4f522a6a8b1526696a709088ba14b17a2d90f443e1e728a9c92"
       },
       "../src/auth/auth.service.ts": {
