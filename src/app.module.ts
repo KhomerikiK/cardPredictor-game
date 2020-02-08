@@ -5,7 +5,6 @@ import * as path from 'path';
 import { AppController } from './app.controller';
 import { AuthService } from './auth/auth.service';
 import { GameService } from './game/game.service';
-import { testm } from './middlewares/testm.middleware';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
@@ -22,10 +21,8 @@ import { TransactionService } from './transaction/transaction.service';
       configDir: path.resolve(__dirname, '..', 'config'),
     }),
     DatabaseModule.forRoot(),
-
     PassportModule,
     HttpModule,
-
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '1d' },//TODO::should be placed in db
@@ -37,9 +34,5 @@ import { TransactionService } from './transaction/transaction.service';
   providers: [AuthService, GameService, JwtStrategy, AccessTokenService, CardService, CardService, TransactionService],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(testm)
-      .forRoutes({ path: 'authenticate', method: RequestMethod.POST });
-  }
+  
 }

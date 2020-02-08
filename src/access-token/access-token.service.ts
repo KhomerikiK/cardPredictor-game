@@ -4,13 +4,16 @@ import { AccessTokenEntity } from 'src/entities/accessToken.entity';
 import { GameEntity } from 'src/entities/game.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from 'src/config/config.service';
 
 @Injectable()
 export class AccessTokenService {
     constructor(
         @InjectRepository(AccessTokenEntity)
         protected readonly accessTokenRepository: Repository<AccessTokenEntity>,
-        private readonly jwtService: JwtService
+        private readonly jwtService: JwtService,
+        private readonly configService: ConfigService
+
 
     ) {}
 

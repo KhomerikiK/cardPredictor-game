@@ -2229,9 +2229,13 @@
         "version": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078",
         "signature": "a2b176f66f0b708241265fb3b417597c9c9d21912bbb7f5cc00d99af551c2078"
       },
+      "../src/config/config.service.ts": {
+        "version": "2e0fc15dc0e1269878437e0b8a87095e7880048473149238ec8a3cecbd9bc954",
+        "signature": "848f462af631e4b095e2e1dadcf1536cebd21bafd40bf9837d418fa1a2060dfb"
+      },
       "../src/access-token/access-token.service.ts": {
-        "version": "482829cb8abb9346a20cf051a9cdf96946fc0e3f42a2c23ba640306548ef7db3",
-        "signature": "0a51e06049cd5405aa56c671cd53f20685c844f69db900e7f48f3216a5e8433e"
+        "version": "e28ca9238e75091de4b1997d56608c7f651ac7f802cf6543b17ce204bb65a3b2",
+        "signature": "92e64512adb2ecd3712e4b5390f56d6523c953c5f51c5ff4caa63e81f2d9f2a4"
       },
       "../src/card/card.service.ts": {
         "version": "1353002abac2f23a1e3db994b306e2cfc13c96906a9e54b964d798e01190a414",
@@ -2241,12 +2245,8 @@
         "version": "068931be4f269ff574482bb96b5f2366fdcfa231d55a3765ef8101eef5f98f60",
         "signature": "1a1bc5bc29c2359245c33e6734e59f592be7531a7772b78e28db61389f6c337c"
       },
-      "../src/config/config.service.ts": {
-        "version": "2c7ac1b3a7368375f6c063a49d99cc6f369a2ed2e9922464e79bb62b671e34b3",
-        "signature": "461594f37b71ee2c1fdb328809206251f22e19f390047828fe510c97544e0a8a"
-      },
       "../src/transaction/transaction.service.ts": {
-        "version": "423850e9e2be367d9b85a2a9a2a772c75c5f955efe5cb236fd1a5d483156b2d0",
+        "version": "2723b1081ac8c4c5faed98da0aadd9e788baa238ee9f70ad3a1770e30b017c80",
         "signature": "a007d777d0c13bd09647f4247da4064084cbb648a74aa13c39bd7fa089020ae1"
       },
       "../src/game/game.service.ts": {
@@ -2254,8 +2254,8 @@
         "signature": "2bbb6fa1ac5447d0a306de8dca0b7f5eff27a34969c3243be9a8c86bd317692d"
       },
       "../src/auth/auth.service.ts": {
-        "version": "02e1c19534ab437e3dc8fc4dda1f948965c48cc94041cb509e84526840c0f1dc",
-        "signature": "564bd76d6aae8d7a9f19df6ce3d6c4ea81cf90c68ee3ce5faba02662c02ad548"
+        "version": "2a4e1d9f7c171b85fe47a72dc85df4d102e96cf16004d522b7cd6b58d5ece9a5",
+        "signature": "9499de748d14b262bb9d5c304433fd329ca05154b2309832dd58ec32931a5da2"
       },
       "../src/app.controller.ts": {
         "version": "bd81639dc2830a9f6a4a9b9aac6e48b49b5d3c162ef5a98635916ea3931f7f65",
@@ -2280,10 +2280,6 @@
       "../src/database.module.ts": {
         "version": "41384fc7a9d5182b2abb0fce3701e8e77cc7ced266c74197bd4624f8ebd7f8dd",
         "signature": "f139d434b3be27dae7415f6570f69b2e8bb7297bb81af40b16917d90b5a112d6"
-      },
-      "../src/middlewares/testm.middleware.ts": {
-        "version": "98775ab89ae4019e86c3e6be0c0107333a0b921f1c182d6c0c9e0a5c81d68639",
-        "signature": "c9241838643ad05f340038d586729d42c8611522f05599f19aab5c36ca1efc15"
       },
       "../src/constants.ts": {
         "version": "ed8677d41721db91317aff900ec6fafdd1d12c24406ce68f97c23fa72efc8b1c",
@@ -2334,8 +2330,8 @@
         "signature": "82dc5a79ff2b8d4c2b30568e7501326432a1904f7fdcf8d798d1b37052c51016"
       },
       "../src/app.module.ts": {
-        "version": "12a99d222e958462cba97cbba20dc0fc0e820a28d94f4749ac31be8998245963",
-        "signature": "146b402e07c5f71477faca481abea8c62b20e449a5923d5b3cbc76719a7701d3"
+        "version": "1d42abd2d5ca47734208dea4d73ba8705c6a256d092212b5e4ca9cc95687dc3a",
+        "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
         "version": "71cc7da1ef9d96f44a214a43017535538b47988d4bc9dedbf7592d2f9fe10da9",
@@ -2572,6 +2568,10 @@
       "../node_modules/@types/json5/index.d.ts": {
         "version": "96d14f21b7652903852eef49379d04dbda28c16ed36468f8c9fa08f7c14c9538",
         "signature": "96d14f21b7652903852eef49379d04dbda28c16ed36468f8c9fa08f7c14c9538"
+      },
+      "../node_modules/@types/parse-json/index.d.ts": {
+        "version": "2b8264b2fefd7367e0f20e2c04eed5d3038831fe00f5efbc110ff0131aab899b",
+        "signature": "2b8264b2fefd7367e0f20e2c04eed5d3038831fe00f5efbc110ff0131aab899b"
       },
       "../node_modules/@types/passport-local/index.d.ts": {
         "version": "e50f9ae34bb92232533e3a32848970dd04f874a8f64d3ae48980e062b6489f26",
@@ -7311,6 +7311,14 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "../src/config/config.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@types/node/path.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "../src/access-token/access-token.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
@@ -7318,6 +7326,7 @@
         "../src/entities/game.entity.ts",
         "../node_modules/typeorm/index.d.ts",
         "../node_modules/@nestjs/jwt/index.d.ts",
+        "../src/config/config.service.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7339,14 +7348,6 @@
         "../src/entities/base.entity.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/entities/game.entity.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.5/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "../src/config/config.service.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../node_modules/@types/node/path.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7380,6 +7381,7 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/dto/authenticat.dto.ts",
         "../src/game/game.service.ts",
+        "../src/config/config.service.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7437,12 +7439,6 @@
         "../node_modules/typeorm-naming-strategies/index.d.ts",
         "../src/config/config.service.ts",
         "../src/entities/index.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.5/fs.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "../src/middlewares/testm.middleware.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -7553,7 +7549,6 @@
         "../src/app.controller.ts",
         "../src/auth/auth.service.ts",
         "../src/game/game.service.ts",
-        "../src/middlewares/testm.middleware.ts",
         "../node_modules/@nestjs/passport/index.d.ts",
         "../node_modules/@nestjs/jwt/index.d.ts",
         "../src/constants.ts",
@@ -8040,6 +8035,12 @@
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
       "../node_modules/@types/json5/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/@types/parse-json/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -12796,6 +12797,7 @@
         "../node_modules/typeorm/index.d.ts",
         "../src/entities/accesstoken.entity.ts",
         "../node_modules/@nestjs/jwt/index.d.ts",
+        "../src/config/config.service.ts",
         "../src/entities/game.entity.ts"
       ],
       "../src/card/card.service.ts": [
@@ -12823,6 +12825,7 @@
         "../src/entities/accesstoken.entity.ts"
       ],
       "../src/auth/auth.service.ts": [
+        "../src/config/config.service.ts",
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/game/game.service.ts"
       ],
@@ -12944,9 +12947,6 @@
       ],
       "../src/auth/jwt.strategy.ts": [
         "../node_modules/@types/passport-jwt/index.d.ts"
-      ],
-      "../src/app.module.ts": [
-        "../node_modules/@nestjs/common/index.d.ts"
       ],
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -13529,6 +13529,12 @@
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../node_modules/@types/parse-json/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.5/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.5/util.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -14089,19 +14095,19 @@
       "../node_modules/@nestjs/jwt/dist/jwt.service.d.ts",
       "../node_modules/@nestjs/jwt/dist/index.d.ts",
       "../node_modules/@nestjs/jwt/index.d.ts",
+      "../src/config/config.service.ts",
       "../src/access-token/access-token.service.ts",
       "../src/card/card.service.ts",
       "../src/entities/bettype.entity.ts",
-      "../src/config/config.service.ts",
       "../src/transaction/transaction.service.ts",
       "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
+      "../src/app.controller.ts",
       "../src/config/config.module.ts",
       "../node_modules/typeorm-naming-strategies/snake-naming.strategy.d.ts",
       "../node_modules/typeorm-naming-strategies/index.d.ts",
       "../src/entities/index.ts",
       "../src/database.module.ts",
-      "../src/middlewares/testm.middleware.ts",
       "../src/constants.ts",
       "../node_modules/@types/range-parser/index.d.ts",
       "../node_modules/@types/express-serve-static-core/index.d.ts",
@@ -14193,7 +14199,7 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../src/app.controller.ts"
+      "../node_modules/@types/parse-json/index.d.ts"
     ]
   },
   "version": "3.7.5"

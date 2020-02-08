@@ -3,6 +3,9 @@ import * as glob from 'glob';
 import * as path from 'path';
 import * as _ from 'lodash';
 
+var AES = require("crypto-js/aes");
+var SHA256 = require("crypto-js/sha256");
+var CryptoJS = require("crypto-js");
 @Injectable()
 export class ConfigService {
   private readonly fileConfig: Map<string, object>;
@@ -81,5 +84,20 @@ export class ConfigService {
     }
 
     return fileConfig;
+  }
+
+
+  
+  async encryptString(token: string){
+    const secret = this.get('APP_KEY');
+    var ciphertext = CryptoJS.AES.encrypt(token, secret);
+    return ciphertext.toString()
+  }
+
+  async decryptString(encripted: string){
+      const secret = this.get('APP_KEY');
+      var bytes  = CryptoJS.AES.decrypt(encripted, secret);
+      var decryptedData = bytes.toString(CryptoJS.enc.Utf8)
+      return decryptedData
   }
 }
