@@ -44,6 +44,8 @@ export class GameService {
    * @param userId
    */
   async getActiveSession(access) {
+    console.log('getActiveSession');
+    
     const activeGame = await this.gameRepository.findOne({
       where: {
         finishedAt: null,
@@ -51,17 +53,30 @@ export class GameService {
       },
       relations: ["status"]
     });
+
+    console.log('activeGame');
+
     if (typeof activeGame == "undefined") {
       return { status: 0, data: "There is no Active game sessions" };
     }
     var activeToken = await this.accesstokenService.getActiveToken(
       activeGame.id
     );
+    console.log('activeToken');
 
     if (typeof activeToken == "undefined") {
+      console.log('undefined');
+
       activeToken = await this.accesstokenService.createNew(activeGame);
+      console.log('createNew');
+
     }else{
+      console.log('refreshToken');
+      
       activeToken = await this.accesstokenService.refreshToken(activeToken);
+      console.log('refreshToken2');
+
+      
     }
     
 

@@ -2286,7 +2286,7 @@
         "signature": "848f462af631e4b095e2e1dadcf1536cebd21bafd40bf9837d418fa1a2060dfb"
       },
       "../src/access-token/access-token.service.ts": {
-        "version": "4302cada96918302d3823cec5f73df7a8d5de67df473ed43b9ea438835e706e3",
+        "version": "2cf6b921cddf4f12723179b8d0c8fd21f613da024c7960e9203917adaee96b91",
         "signature": "a14d0bba367809c5f33e3c4f83bcc288c2e9d1c13e072b75da09e09ca02a7f3b"
       },
       "../src/card/card.service.ts": {
@@ -2298,7 +2298,7 @@
         "signature": "c121a5e8247c77fb8f9d4953883803c5c6e06018fe8947cfad0b5b3b7e1f61d8"
       },
       "../src/game/game.service.ts": {
-        "version": "36cf7cd61639473d75a8f37e5893e320dd92e60b97581bb3290ab62a31657945",
+        "version": "9d2e6c4a7e496140b5f478b18643eca93d6d2014d77882a83aac534a73229230",
         "signature": "3091f62249b44dbf97067e5c67d33f8776d6c70ec5999fda0c70c53f1aef2b42"
       },
       "../src/auth/auth.service.ts": {
@@ -14335,7 +14335,7 @@
       "../node_modules/@types/minimatch/index.d.ts",
       "../node_modules/@types/glob/index.d.ts",
       "../src/config/config.service.ts",
-      "../src/access-token/access-token.service.ts",
+      "../src/card/card.service.ts",
       "../src/transaction/transaction.service.ts",
       "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
@@ -14437,7 +14437,7 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../src/card/card.service.ts"
+      "../src/access-token/access-token.service.ts"
     ]
   },
   "version": "3.7.5"
