@@ -2286,11 +2286,11 @@
         "signature": "848f462af631e4b095e2e1dadcf1536cebd21bafd40bf9837d418fa1a2060dfb"
       },
       "../src/access-token/access-token.service.ts": {
-        "version": "2cf6b921cddf4f12723179b8d0c8fd21f613da024c7960e9203917adaee96b91",
+        "version": "0818cce79c400897531c10463e0299ba2cad553008f124d8688fcba836e2762a",
         "signature": "a14d0bba367809c5f33e3c4f83bcc288c2e9d1c13e072b75da09e09ca02a7f3b"
       },
       "../src/card/card.service.ts": {
-        "version": "9e745222d70f9ce6d1e5f39419317a488a31a37de5f499f3c72cb6ebf75d5107",
+        "version": "6a266e75c0cd0aae33300e3c2a834139ceebe32a3af9ce9f14002f8eeecc36fd",
         "signature": "d0540446d240d02343c125a1903f8e89b55987819f51fc1c694a93327a912370"
       },
       "../src/transaction/transaction.service.ts": {
@@ -2298,7 +2298,7 @@
         "signature": "c121a5e8247c77fb8f9d4953883803c5c6e06018fe8947cfad0b5b3b7e1f61d8"
       },
       "../src/game/game.service.ts": {
-        "version": "9d2e6c4a7e496140b5f478b18643eca93d6d2014d77882a83aac534a73229230",
+        "version": "f300d7e3777c14f1ef28e502efe93ddefac1085632a46025c1f527d7130d4388",
         "signature": "3091f62249b44dbf97067e5c67d33f8776d6c70ec5999fda0c70c53f1aef2b42"
       },
       "../src/auth/auth.service.ts": {
@@ -2306,7 +2306,7 @@
         "signature": "81b3394359f882d2aac5b703d58b8332ab81b9b29d865188fb6de64ace7fc142"
       },
       "../src/app.controller.ts": {
-        "version": "f38d7d4370db0b587fb73e0e6793237467f646d711c0969401c7d6211f75e8fe",
+        "version": "f174b711eabb9d1fe00976ef2309bdf5c6f9deaf1c8d250e49b4caa151bb508e",
         "signature": "a683bf487e55ac76b12463d3795f80041ded5873e1c448a674ae742e176c6688"
       },
       "../src/config/config.module.ts": {
@@ -14335,11 +14335,8 @@
       "../node_modules/@types/minimatch/index.d.ts",
       "../node_modules/@types/glob/index.d.ts",
       "../src/config/config.service.ts",
-      "../src/card/card.service.ts",
       "../src/transaction/transaction.service.ts",
-      "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
-      "../src/app.controller.ts",
       "../src/config/config.module.ts",
       "../node_modules/typeorm-naming-strategies/snake-naming.strategy.d.ts",
       "../node_modules/typeorm-naming-strategies/index.d.ts",
@@ -14437,7 +14434,10 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../src/access-token/access-token.service.ts"
+      "../src/access-token/access-token.service.ts",
+      "../src/card/card.service.ts",
+      "../src/game/game.service.ts",
+      "../src/app.controller.ts"
     ]
   },
   "version": "3.7.5"

@@ -42,7 +42,7 @@ export class AppController {
     }
 
     console.log(accessToken.game.status);
-    
+
     if (accessToken.game.status.label != "PENDING") {
       return { status: 0, data: "stage has finished / not started" };
     }

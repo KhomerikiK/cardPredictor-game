@@ -15,7 +15,6 @@ export class CardService {
     protected readonly cardTypeRepository: Repository<CardTypeEntity>
   ) {}
   async generate(cardType: string, game: GameEntity) {
-
     const randomNumber = Math.floor(Math.random() * 100);
     const type = await this.getCardType(cardType);
     const card = await this.store(type, randomNumber, game);
@@ -27,7 +26,6 @@ export class CardService {
   }
 
   async store(type: CardTypeEntity, value: number, game: GameEntity) {
-
     var card = new CardEntity();
     card.type = type;
     card.value = value;
