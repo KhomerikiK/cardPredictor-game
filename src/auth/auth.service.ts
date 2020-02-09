@@ -22,12 +22,14 @@ export class AuthService {
     const access = await this.validateToken(request);
     if (access.status) {
       const userId = access.data.user_details.id;
-      const activeGame = await this.gameService.getActiveSession(access);
-      if (activeGame.status) {
-        return activeGame;
-      } else {
-        return await this.gameService.createNewSession(access.data);
+      let checkActivSession = await this.gameService.checkActiveState(userId);
+      if (checkActivSession.exists) {
+        let game = checkActivSession.game;        
+        game.walletAccessToken = access.data.access_token;
+        await game.save();
+        return await this.gameService.refreshGameToken(game);
       }
+      return await this.gameService.createNewSession(access.data);
     }
     return access;
   }

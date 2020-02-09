@@ -21,14 +21,12 @@ export class AccessTokenService {
    * @return token
    * */
   async store(token: string, game: GameEntity) {
-    console.log("store");
-
+    
     var accessToken = new AccessTokenEntity();
     accessToken.game = game;
     accessToken.token = token;
     await accessToken.save();
-    console.log("after store");
-
+    
     return accessToken;
   }
 
@@ -48,13 +46,15 @@ export class AccessTokenService {
    * @return AccessTokenEntity
    * */
   async getActiveToken(game_id: number) {
-    return await this.accessTokenRepository.findOne({
+    let activeToke = await this.accessTokenRepository.findOne({
       where: {
         expiredAt: null,
         game_id: game_id
       },
-      relations: ["game", "game.status", "game.card", "game.card.type"]
-    });
+      relations: ["game", "game.status", "game.card", "game.card.type"],
+    })
+    let result = typeof activeToke != 'undefined';
+    return {exists:result, accessToken:activeToke}
   }
 
   /**
@@ -62,11 +62,9 @@ export class AccessTokenService {
    * @return void
    * */
   async expire(accessToken: AccessTokenEntity) {
-    console.log("expire functiond");
-
     const now = new Date();
     accessToken.expiredAt = now; //fill expire_at field to detect if expired
-    accessToken.save();
+    await accessToken.save();
   }
 
   /**
@@ -74,8 +72,10 @@ export class AccessTokenService {
    * @return AccessTokenEntity
    * */
   async refreshToken(accessToken: AccessTokenEntity) {
-    await this.expire(accessToken); //expire the old accessToken
 
+    await this.expire(accessToken); //expire the old accessToken
+    console.log('expired');
+    
     const payload = {
       token: accessToken.game.token,
       id: accessToken.game.id

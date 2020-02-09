@@ -37,45 +37,33 @@ export class GameService {
     protected readonly transactionService: TransactionService
   ) {}
 
-  /**
-   * check if exists active session of the game on current user
-   * if doesnt exists return back
-   * if exists but token expired refresh token
-   * @param userId
-   */
-  async getActiveSession(access) {
-    const activeGame = await this.gameRepository.findOne({
-      where: {
-        finishedAt: null,
-        userId: access.data.user_details.id
-      },
-      relations: ["status"]
-    });
 
-    if (typeof activeGame == "undefined") {
-      return { status: 0, data: "There is no Active game sessions" };
+
+   async checkActiveState(userId){
+      const activeGame = await this.gameRepository.findOne({
+        where: {
+          finishedAt: null,
+          userId: userId
+        },
+        relations: ["status", "accessToken"]
+      });
+      let result = typeof activeGame != 'undefined';
+      return {exists:result, game:activeGame}
+   }
+
+   async refreshGameToken(game){
+
+    var activeToken = await this.accesstokenService.getActiveToken(game.id)
+
+    if (activeToken.exists) {
+      var refreshToken = await this.accesstokenService.refreshToken(activeToken.accessToken)
+      return {status:1, data:refreshToken}
     }
-    var activeToken = await this.accesstokenService.getActiveToken(
-      activeGame.id
-    );
+    return {status:0 , data: activeToken}
+   }
 
-    if (typeof activeToken == "undefined") {
-      activeToken = await this.accesstokenService.createNew(activeGame);
-    } else {
-      activeToken = await this.accesstokenService.refreshToken(activeToken);
-    }
 
-    activeGame.walletAccessToken = access.data.access_token;
-    await activeGame.save();
 
-    return {
-      status: 1,
-      data: {
-        game: activeGame,
-        token: activeToken
-      }
-    };
-  }
 
   /**
    * create new session of the game
@@ -168,7 +156,11 @@ export class GameService {
       { amount: game.betAmount },
       this.WithdrawEndpoint
     );
+    console.log('----------withdraw--------------');
+    console.log(witdrawStatus);
+    console.log('----------withdraw--------------');
 
+    
     var newAccessToken = witdrawStatus.data.access_token;
     /* if money charged successfully */
     if (witdrawStatus.status) {
@@ -186,25 +178,33 @@ export class GameService {
       } else {
         lostAmount = game.betAmount;
         const status = await this.getLoseStatuse();
-        gameFromDb.statusId = status.id;
+        gameFromDb.status = status;
       }
 
+      console.log('----------status--------------');
       const now = new Date();
       gameFromDb.finishedAt = now;
+      accessToken.expiredAt = now;
+      await accessToken.save();
       await gameFromDb.save();
 
-      await this.transactionService._post(
+      console.log(newAccessToken);
+      
+      let res = await this.transactionService._post(
         newAccessToken,
         {},
         this.logOutEndpoint
       );
+
+      console.log(res);
+      
       return {
         status: 1,
         data: {
           bet_mount: game.betAmount,
           won_amount: wonAmount,
           lost_amount: lostAmount,
-          game_status: game.status,
+          game_status: gameFromDb.status,
           card_value: systemCard.value
         }
       };
