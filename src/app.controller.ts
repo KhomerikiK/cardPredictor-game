@@ -31,9 +31,9 @@ export class AppController {
     const auth = req.headers.authorization;
     const jwt = auth.replace("Bearer ", "");
     const accessToken = await this.accessTokenService.getByToken(jwt);
-    
+
     console.log(accessToken);
-    
+
     if (typeof accessToken == "undefined") {
       throw new UnauthorizedException();
     }

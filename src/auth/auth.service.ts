@@ -45,7 +45,7 @@ export class AuthService {
 
       console.log(encripted);
       console.log(234324);
-      
+
       const headersRequest = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
@@ -59,7 +59,7 @@ export class AuthService {
         .toPromise();
       return result.data;
     } catch (error) {
-      return { status: 0, data: error.message+'we' };
+      return { status: 0, data: error.message + "we" };
     }
   }
 }

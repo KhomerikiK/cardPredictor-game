@@ -1158,7 +1158,7 @@
         "signature": "0df44567c062e7511e6c1de7d2bbb348e79d9996b7b87f781be8af5b49eb214b"
       },
       "../src/entities/base.entity.ts": {
-        "version": "bc87b37be73f4ba413c0c1cc0bcd2c7f55f1d646d7580cc32ea27d2412fdd9d4",
+        "version": "3596d13a0f2527117c3b93157b60405a88bcac7b46c5a00a75a188e1682f5fad",
         "signature": "7416eac44f64fea80ee0a2e6d14ff5f9477f96e3e0e38e06c9d398fb43b64182"
       },
       "../src/entities/status.entity.ts": {
@@ -1178,7 +1178,7 @@
         "signature": "a980749987941c28c59d0caeaf3ba2688c92f04ec778780402f02192375e4984"
       },
       "../src/entities/game.entity.ts": {
-        "version": "4db80f9ca6ecef86ea3a7e45d6dae56dc5008b88d4a7e943804476af19514dea",
+        "version": "2bdb4ca479c440e795d0ffbef1450a170b3836e19da6c549bbf3084bf455be94",
         "signature": "b46339ca341b5911fb5c67da4470d18ef6ca6cdfd708b2469bf9d90abeef60be"
       },
       "../src/entities/bettype.entity.ts": {
@@ -2294,7 +2294,7 @@
         "signature": "d0540446d240d02343c125a1903f8e89b55987819f51fc1c694a93327a912370"
       },
       "../src/transaction/transaction.service.ts": {
-        "version": "7940bdbf50be756517bf1d6f54586bc1d81d7e64581b84b7b3871b73bfda97eb",
+        "version": "12206d4136ffd6170aa54dec18ad57f2815fde560d4f2252211baec28352d6b3",
         "signature": "c121a5e8247c77fb8f9d4953883803c5c6e06018fe8947cfad0b5b3b7e1f61d8"
       },
       "../src/game/game.service.ts": {
@@ -2302,11 +2302,11 @@
         "signature": "3ac4aedfdb556b4089ab5c148005dbe22a5bc65416b3064f9a707ec39caeab3c"
       },
       "../src/auth/auth.service.ts": {
-        "version": "61e66115dcf2e9f4ef39e708502019bd0246460635312bc101dca5243edd8297",
+        "version": "60c91df968dc7b5a3fef247c9afca303d80538e35cf68fee4d323f33fb76427b",
         "signature": "81b3394359f882d2aac5b703d58b8332ab81b9b29d865188fb6de64ace7fc142"
       },
       "../src/app.controller.ts": {
-        "version": "9c5367a1c38346a61f5c19384f680edceb0edaafb5956c2a1a675c28ebbe525d",
+        "version": "b9160756e7c68f4a73d19516c09fd7c1befb66788b060dbc8f31de40e602bd4f",
         "signature": "a683bf487e55ac76b12463d3795f80041ded5873e1c448a674ae742e176c6688"
       },
       "../src/config/config.module.ts": {
@@ -14046,18 +14046,17 @@
       "../node_modules/typeorm/naming-strategy/defaultnamingstrategy.d.ts",
       "../node_modules/typeorm/util/promiseutils.d.ts",
       "../node_modules/typeorm/index.d.ts",
+      "../migrations/1581237487232-db_migrations.ts",
       "../node_modules/typeorm-seeding/dist/entity-factory.d.ts",
       "../node_modules/typeorm-seeding/dist/types.d.ts",
       "../node_modules/typeorm-seeding/dist/importer.d.ts",
       "../node_modules/typeorm-seeding/dist/connection.d.ts",
       "../node_modules/typeorm-seeding/dist/helpers.d.ts",
       "../node_modules/typeorm-seeding/dist/typeorm-seeding.d.ts",
-      "../src/entities/base.entity.ts",
       "../src/entities/status.entity.ts",
       "../src/entities/accesstoken.entity.ts",
       "../src/entities/cardtype.entity.ts",
       "../src/entities/card.entity.ts",
-      "../src/entities/game.entity.ts",
       "../src/entities/bettype.entity.ts",
       "../seeds/bettypes.seed.ts",
       "../seeds/cardtypes.seed.ts",
@@ -14336,7 +14335,6 @@
       "../src/config/config.service.ts",
       "../src/access-token/access-token.service.ts",
       "../src/card/card.service.ts",
-      "../src/transaction/transaction.service.ts",
       "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
       "../src/app.controller.ts",
@@ -14437,7 +14435,9 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../migrations/1581237487232-db_migrations.ts"
+      "../src/entities/base.entity.ts",
+      "../src/entities/game.entity.ts",
+      "../src/transaction/transaction.service.ts"
     ]
   },
   "version": "3.7.5"

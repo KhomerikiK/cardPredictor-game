@@ -10,7 +10,7 @@ export class BaseEntity extends OrmBaseEntity {
 
   @Column({
     type: "timestamp",
-    name: "created_at",
+    name: "created_at"
   })
   public createdAt: Date;
 
