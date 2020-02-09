@@ -34,6 +34,11 @@
 $ npm install
 ```
 
+## Setup
+  1. cp .env.example .env
+  2. fill ormconfig.js and ormconfig.json
+
+
 ## Running the app
 
 ```bash
