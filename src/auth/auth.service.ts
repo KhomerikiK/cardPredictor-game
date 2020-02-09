@@ -22,7 +22,7 @@ export class AuthService {
     const access = await this.validateToken(request);
     if (access.status) {
       const userId = access.data.user_details.id;
-      const activeGame = await this.gameService.getActiveSession(userId);
+      const activeGame = await this.gameService.getActiveSession(access);
       if (activeGame.status) {
         return activeGame;
       } else {
@@ -42,9 +42,6 @@ export class AuthService {
       const authHeaders = request.headers.authorization;
       const jwt = authHeaders.replace("Bearer ", "");
       const encripted = await this.configService.encryptString(jwt);
-
-      console.log(encripted);
-      console.log(234324);
 
       const headersRequest = {
         "Content-Type": "application/json",

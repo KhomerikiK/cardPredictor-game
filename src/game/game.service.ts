@@ -43,11 +43,11 @@ export class GameService {
    * if exists but token expired refresh token
    * @param userId
    */
-  async getActiveSession(userId) {
+  async getActiveSession(access) {
     const activeGame = await this.gameRepository.findOne({
       where: {
         finishedAt: null,
-        userId: userId
+        userId: access.data.user_details.id
       },
       relations: ["status"]
     });
@@ -57,9 +57,18 @@ export class GameService {
     var activeToken = await this.accesstokenService.getActiveToken(
       activeGame.id
     );
+
     if (typeof activeToken == "undefined") {
       activeToken = await this.accesstokenService.createNew(activeGame);
+    }else{
+      activeToken = await this.accesstokenService.refreshToken(activeToken);
     }
+    
+
+    activeGame.walletAccessToken = access.data.access_token;
+    await activeGame.save();
+    console.log('saved');
+    
     return {
       status: 1,
       data: {
@@ -67,6 +76,8 @@ export class GameService {
         token: activeToken
       }
     };
+
+ 
   }
 
   /**
@@ -149,19 +160,23 @@ export class GameService {
       userCardValue,
       systemCard.value
     );
+
+    var gameFromDb = await this.gameRepository.findOne({where:{id:game.id}});
+
     /* withdrow amount form users wallet */
     const witdrawStatus = await this.transactionService._post(
       game.walletAccessToken,
       { amount: game.betAmount },
       this.WithdrawEndpoint
     );
+
     var newAccessToken = witdrawStatus.data.access_token;
     /* if money charged successfully */
     if (witdrawStatus.status) {
       /* if user won the game */
       if (result) {
         const status = await this.getWinStatuse();
-        game.status = status;
+        gameFromDb.status = status;
         wonAmount = game.betAmount * 2;
         const depositStatus = await this.transactionService._post(
           game.walletAccessToken,
@@ -172,11 +187,13 @@ export class GameService {
       } else {
         lostAmount = game.betAmount;
         const status = await this.getLoseStatuse();
-        game.status = status;
+        gameFromDb.statusId = status.id;
       }
+
       const now = new Date();
-      game.finishedAt = now;
-      game.save();
+      gameFromDb.finishedAt = now;
+      await gameFromDb.save();
+
       await this.transactionService._post(
         newAccessToken,
         {},
@@ -195,6 +212,8 @@ export class GameService {
     }
     return witdrawStatus;
   }
+
+  
 
   /**
    * Gets inprogress status

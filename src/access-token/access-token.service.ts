@@ -47,7 +47,7 @@ export class AccessTokenService {
     return await this.accessTokenRepository.findOne({
       where: {
         expiredAt: null,
-        user_id: game_id
+        game_id: game_id
       }
     });
   }
