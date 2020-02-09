@@ -10,6 +10,6 @@
     "migrationsTableName": "migrations",
     "migrations": ["migrations/*.ts"],
     "cli": {
-        "migrationsDir": "migration"
+        "migrationsDir": "migrations"
     }
   }

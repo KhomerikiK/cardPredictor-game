@@ -16,7 +16,6 @@ export class AccessTokenEntity extends BaseEntity {
   @Column({
     type: "timestamp",
     name: "expired_at",
-    default: new Date()
   })
   public expiredAt: Date;
 

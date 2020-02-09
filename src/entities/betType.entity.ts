@@ -9,10 +9,6 @@ export class BetTypeEntity extends BaseEntity {
   })
   public label: string;
 
-  @Column({
-    type: "varchar"
-  })
-  public symbol: string;
   /**
    * relation with transactions
    */

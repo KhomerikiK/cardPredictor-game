@@ -18,9 +18,16 @@ export class CardEntity extends BaseEntity {
   public value: number;
 
   @Column({
+    name: "card_type_id",
     type: "int"
   })
   public cardTypeId: number;
+
+  @Column({
+    name: "game_id",
+    type: "int"
+  })
+  public gameId: number;
 
   @OneToOne(
     () => CardTypeEntity,

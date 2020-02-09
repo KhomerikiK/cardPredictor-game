@@ -14,6 +14,7 @@ import { CardEntity } from "./card.entity";
 @Entity("games")
 export class GameEntity extends BaseEntity {
   @Column({
+    name:"wallet_access_token",
     type: "varchar"
   })
   public walletAccessToken: string;
@@ -24,16 +25,19 @@ export class GameEntity extends BaseEntity {
   public token: string;
 
   @Column({
+    name:"bet_amount",
     type: "decimal"
   })
   public betAmount: number;
 
   @Column({
+    name:"user_id",
     type: "int"
   })
   public userId: number;
 
   @Column({
+    name:"status_id",
     type: "int"
   })
   public statusId: number;

@@ -1125,9 +1125,9 @@
         "version": "c22b4c00503c6c77dbad4efeb054b7d2a606c8e30b22377a701cf4045a522c5c",
         "signature": "c22b4c00503c6c77dbad4efeb054b7d2a606c8e30b22377a701cf4045a522c5c"
       },
-      "../migrations/1580989867810-tesetablemigration.ts": {
-        "version": "3f63e1df709a1d1ca4e7b4303553fa23539b7a8cceffa339aee11a1e319f0c40",
-        "signature": "b717ad2f4e7f9d52e354b033ba7ecc408cf586db4025ba7bd749a224262e53fa"
+      "../migrations/1581233374628-db_migrations.ts": {
+        "version": "104da2806b51d73798d66d9b3cffbe400a9131584772cc1c9c3ade1bc2d75c57",
+        "signature": "a7ae35fb84a4ce1fc5f002ff13e3bfbbe466a12feb260461961283082135dc2c"
       },
       "../node_modules/@nestjs/common/cache/cache.constants.d.ts": {
         "version": "3346a737f29b700e7c6c2a694973ceb70a738c3ac5212ffbefac8a27048fa8d6",
@@ -2178,7 +2178,7 @@
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
       "../src/entities/base.entity.ts": {
-        "version": "c7aa7b3e645bd5c058ba55ff2f401c63faf3f7202e0f1795a28e98b427270478",
+        "version": "bc87b37be73f4ba413c0c1cc0bcd2c7f55f1d646d7580cc32ea27d2412fdd9d4",
         "signature": "7416eac44f64fea80ee0a2e6d14ff5f9477f96e3e0e38e06c9d398fb43b64182"
       },
       "../src/entities/status.entity.ts": {
@@ -2186,7 +2186,7 @@
         "signature": "9715d3b64c72d44e4b2fe2b9f0029eeea699de302c252b0e2d0c923f2dd3519e"
       },
       "../src/entities/accesstoken.entity.ts": {
-        "version": "a76e78ad8216a207a182cbe84f280ca8c9c5dccc89d49cf9a25452b5752bfe94",
+        "version": "59a74295b49f113ab816bf86ac5d743e669292b7f26fea8866f6709f989d7df0",
         "signature": "2cb4f59f692f98d5a9279fb49b53cf2e601d41ae7de0b7345182601c277994d8"
       },
       "../src/entities/cardtype.entity.ts": {
@@ -2194,11 +2194,11 @@
         "signature": "0e38353391e16f2990ba8d6f9ff9f05441ace39733325dd2085cff70c88be090"
       },
       "../src/entities/card.entity.ts": {
-        "version": "ab7565d9d1f9e404e67008bafe4545eb0bce05ee5fc51c46a175e0654b04e029",
-        "signature": "eabb192c59e4a36ce2f7c8f4a0734e98e120bbb7e834cd151c4af492a1cd8f3e"
+        "version": "5f89e1652ac8ddafdc3dc0948a3e8c0250786e9f7557ddd44bc0c09c8643b75e",
+        "signature": "a980749987941c28c59d0caeaf3ba2688c92f04ec778780402f02192375e4984"
       },
       "../src/entities/game.entity.ts": {
-        "version": "4758316343c73126f665d76634b9b321d23de0c17b027afafd1237b061585a4e",
+        "version": "a72c4a7b5c9c59d53c02a003728a60f8e7933dc2e5bd0f27bd01f40b750e4c95",
         "signature": "b46339ca341b5911fb5c67da4470d18ef6ca6cdfd708b2469bf9d90abeef60be"
       },
       "../node_modules/@types/jsonwebtoken/index.d.ts": {
@@ -2242,8 +2242,8 @@
         "signature": "d0540446d240d02343c125a1903f8e89b55987819f51fc1c694a93327a912370"
       },
       "../src/entities/bettype.entity.ts": {
-        "version": "0b02e8f592d373965b8bb95167cab16e1b362149fdce0a84af955e799336a74b",
-        "signature": "1a1bc5bc29c2359245c33e6734e59f592be7531a7772b78e28db61389f6c337c"
+        "version": "5b2e0c30461e64823692ab817b23dd66f90e1e4b7b1948723eedac8e9445fc6c",
+        "signature": "f5bf84faa97309ac773db66f15ff6d7966586154983f74eef608bc453412e2b0"
       },
       "../src/transaction/transaction.service.ts": {
         "version": "7940bdbf50be756517bf1d6f54586bc1d81d7e64581b84b7b3871b73bfda97eb",
@@ -2275,7 +2275,7 @@
       },
       "../src/entities/index.ts": {
         "version": "fbd57b4f63a39162cab9c038ac35a140c2ac6182ffc5bdfd72e238fd6e7bfe96",
-        "signature": "c3f2cccf03c795b7ed5c9f2ae13c9f961b68a04c6f974f15e4d6f203559759c7"
+        "signature": "98c0f9efa8818cd8425d8b488aee3922cfcf6bad23894556556ca0a8ce1b6880"
       },
       "../src/database.module.ts": {
         "version": "88b3f586ead7a26e18dc4da4369bdac594baee7fe9d50a5f2170df8215b0b7c4",
@@ -5060,7 +5060,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../migrations/1580989867810-tesetablemigration.ts": [
+      "../migrations/1581233374628-db_migrations.ts": [
         "../node_modules/typeorm/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
@@ -10582,9 +10582,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../migrations/1580989867810-tesetablemigration.ts": [
-        "../node_modules/typeorm/index.d.ts"
-      ],
       "../node_modules/@nestjs/common/cache/cache.constants.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
@@ -12858,8 +12855,8 @@
         "../src/entities/accesstoken.entity.ts",
         "../src/entities/game.entity.ts",
         "../src/entities/status.entity.ts",
-        "../src/entities/bettype.entity.ts",
-        "../src/entities/card.entity.ts"
+        "../src/entities/card.entity.ts",
+        "../src/entities/bettype.entity.ts"
       ],
       "../src/database.module.ts": [
         "../node_modules/@nestjs/common/index.d.ts"
@@ -13535,6 +13532,9 @@
         "../node_modules/@types/node/ts3.5/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "../migrations/1581233374628-db_migrations.ts": [
+        "../node_modules/typeorm/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -13819,7 +13819,6 @@
       "../node_modules/typeorm/naming-strategy/defaultnamingstrategy.d.ts",
       "../node_modules/typeorm/util/promiseutils.d.ts",
       "../node_modules/typeorm/index.d.ts",
-      "../migrations/1580989867810-tesetablemigration.ts",
       "../node_modules/@nestjs/common/cache/cache.constants.d.ts",
       "../node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
       "../node_modules/@nestjs/common/interfaces/controllers/controller-metadata.interface.d.ts",
@@ -14099,6 +14098,7 @@
       "../src/access-token/access-token.service.ts",
       "../src/card/card.service.ts",
       "../src/entities/bettype.entity.ts",
+      "../src/transaction/transaction.service.ts",
       "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
       "../src/app.controller.ts",
@@ -14199,7 +14199,7 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../src/transaction/transaction.service.ts"
+      "../migrations/1581233374628-db_migrations.ts"
     ]
   },
   "version": "3.7.5"
