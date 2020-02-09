@@ -2306,7 +2306,7 @@
         "signature": "81b3394359f882d2aac5b703d58b8332ab81b9b29d865188fb6de64ace7fc142"
       },
       "../src/app.controller.ts": {
-        "version": "b9160756e7c68f4a73d19516c09fd7c1befb66788b060dbc8f31de40e602bd4f",
+        "version": "42d85ea873241fc6f6a18152c1d8e6eccfbd0ed67e71d031647be41f1663dc30",
         "signature": "a683bf487e55ac76b12463d3795f80041ded5873e1c448a674ae742e176c6688"
       },
       "../src/config/config.module.ts": {
@@ -14053,10 +14053,12 @@
       "../node_modules/typeorm-seeding/dist/connection.d.ts",
       "../node_modules/typeorm-seeding/dist/helpers.d.ts",
       "../node_modules/typeorm-seeding/dist/typeorm-seeding.d.ts",
+      "../src/entities/base.entity.ts",
       "../src/entities/status.entity.ts",
       "../src/entities/accesstoken.entity.ts",
       "../src/entities/cardtype.entity.ts",
       "../src/entities/card.entity.ts",
+      "../src/entities/game.entity.ts",
       "../src/entities/bettype.entity.ts",
       "../seeds/bettypes.seed.ts",
       "../seeds/cardtypes.seed.ts",
@@ -14335,9 +14337,9 @@
       "../src/config/config.service.ts",
       "../src/access-token/access-token.service.ts",
       "../src/card/card.service.ts",
+      "../src/transaction/transaction.service.ts",
       "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
-      "../src/app.controller.ts",
       "../src/config/config.module.ts",
       "../node_modules/typeorm-naming-strategies/snake-naming.strategy.d.ts",
       "../node_modules/typeorm-naming-strategies/index.d.ts",
@@ -14435,9 +14437,7 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../src/entities/base.entity.ts",
-      "../src/entities/game.entity.ts",
-      "../src/transaction/transaction.service.ts"
+      "../src/app.controller.ts"
     ]
   },
   "version": "3.7.5"

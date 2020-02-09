@@ -42,7 +42,7 @@ export class AppController {
     }
 
     if (accessToken.game.status.label != "PENDING") {
-      return { status: 0, data: "stage has finished" };
+      return { status: 0, data: "stage has finished / not started" };
     }
     return await this.gameService.startGame(accessToken, req.body.amount);
   }
@@ -62,7 +62,7 @@ export class AppController {
       throw new UnauthorizedException();
     }
     if (accessToken.game.status.label != "IN_PROGRESS") {
-      return { status: 0, data: "stage has finished" };
+      return { status: 0, data: "stage has finished / not started" };
     }
     return await this.gameService.endGame(
       accessToken,

@@ -43,11 +43,14 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
+# run migrations
+$ npm run typeorm migration:
+
+# run migrations
+$ npm run seed
 ```
 
-## Test
+## Database
 
 ```bash
 # unit tests
