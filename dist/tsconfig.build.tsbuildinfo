@@ -1129,9 +1129,9 @@
         "version": "c22b4c00503c6c77dbad4efeb054b7d2a606c8e30b22377a701cf4045a522c5c",
         "signature": "c22b4c00503c6c77dbad4efeb054b7d2a606c8e30b22377a701cf4045a522c5c"
       },
-      "../migrations/1581233374628-db_migrations.ts": {
-        "version": "104da2806b51d73798d66d9b3cffbe400a9131584772cc1c9c3ade1bc2d75c57",
-        "signature": "a7ae35fb84a4ce1fc5f002ff13e3bfbbe466a12feb260461961283082135dc2c"
+      "../migrations/1581237487232-db_migrations.ts": {
+        "version": "b7608381eee73691b464df1423d91e94c1d275a16a7a6595eb3ba2520e119e7f",
+        "signature": "774125a8c9de5bc23d04b06ebb02ec8715099dadb891b53e22940852e15c33b5"
       },
       "../node_modules/typeorm-seeding/dist/entity-factory.d.ts": {
         "version": "8d2a9911bde718e106329eb7797c63601e34ac28ef66890dc4802d63b4ff5f96",
@@ -5114,7 +5114,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../migrations/1581233374628-db_migrations.ts": [
+      "../migrations/1581237487232-db_migrations.ts": [
         "../node_modules/typeorm/index.d.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.5/fs.d.ts",
@@ -10733,7 +10733,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "../migrations/1581233374628-db_migrations.ts": [
+      "../migrations/1581237487232-db_migrations.ts": [
         "../node_modules/typeorm/index.d.ts"
       ],
       "../node_modules/typeorm-seeding/dist/entity-factory.d.ts": [
@@ -14046,7 +14046,6 @@
       "../node_modules/typeorm/naming-strategy/defaultnamingstrategy.d.ts",
       "../node_modules/typeorm/util/promiseutils.d.ts",
       "../node_modules/typeorm/index.d.ts",
-      "../migrations/1581233374628-db_migrations.ts",
       "../node_modules/typeorm-seeding/dist/entity-factory.d.ts",
       "../node_modules/typeorm-seeding/dist/types.d.ts",
       "../node_modules/typeorm-seeding/dist/importer.d.ts",
@@ -14062,6 +14061,7 @@
       "../src/entities/bettype.entity.ts",
       "../seeds/bettypes.seed.ts",
       "../seeds/cardtypes.seed.ts",
+      "../seeds/statuses.seed.ts",
       "../node_modules/@nestjs/common/cache/cache.constants.d.ts",
       "../node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
       "../node_modules/@nestjs/common/interfaces/controllers/controller-metadata.interface.d.ts",
@@ -14437,7 +14437,7 @@
       "../../node_modules/@types/prop-types/index.d.ts",
       "../../node_modules/@types/react/index.d.ts",
       "../../node_modules/@types/hoist-non-react-statics/index.d.ts",
-      "../seeds/statuses.seed.ts"
+      "../migrations/1581237487232-db_migrations.ts"
     ]
   },
   "version": "3.7.5"
