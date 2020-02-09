@@ -19,9 +19,9 @@ export class TransactionService {
    * @returns  JSON
    */
   async _post(jwt: string, postData: any, endpoint: string) {
-    const url = this.configService.get("WALLET_SERVICE_URL") + endpoint;
+    const url = await this.configService.get("WALLET_SERVICE_URL") + endpoint;
     try {
-      const encripted = this.configService.encryptString(jwt);
+      const encripted = await this.configService.encryptString(jwt);
       const headersRequest = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,

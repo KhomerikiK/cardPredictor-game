@@ -31,6 +31,10 @@ export class AppController {
     const auth = req.headers.authorization;
     const jwt = auth.replace("Bearer ", "");
     const accessToken = await this.accessTokenService.getByToken(jwt);
+    
+    if (typeof accessToken == "undefined") {
+      throw new UnauthorizedException();
+    }
     if (accessToken.expiredAt != null) {
       throw new UnauthorizedException();
     }
@@ -47,6 +51,11 @@ export class AppController {
     const auth = req.headers.authorization;
     const jwt = auth.replace("Bearer ", "");
     const accessToken = await this.accessTokenService.getByToken(jwt);
+
+    if (typeof accessToken == "undefined") {
+      throw new UnauthorizedException();
+    }
+
     if (accessToken.expiredAt != null) {
       throw new UnauthorizedException();
     }
