@@ -53,7 +53,8 @@ export class GameEntity extends BaseEntity {
 
   @Column({
     type: "timestamp",
-    name: "finished_at"
+    name: "finished_at",
+    default: null
   })
   public finishedAt: Date;
 

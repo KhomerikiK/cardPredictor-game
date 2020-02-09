@@ -1130,7 +1130,7 @@
         "signature": "c22b4c00503c6c77dbad4efeb054b7d2a606c8e30b22377a701cf4045a522c5c"
       },
       "../migrations/1581237487232-db_migrations.ts": {
-        "version": "b7608381eee73691b464df1423d91e94c1d275a16a7a6595eb3ba2520e119e7f",
+        "version": "b4ceff698346b993cc827c7fa4895e9fd11f7443b577969fc9147da90d672acf",
         "signature": "774125a8c9de5bc23d04b06ebb02ec8715099dadb891b53e22940852e15c33b5"
       },
       "../node_modules/typeorm-seeding/dist/entity-factory.d.ts": {
@@ -1166,7 +1166,7 @@
         "signature": "9715d3b64c72d44e4b2fe2b9f0029eeea699de302c252b0e2d0c923f2dd3519e"
       },
       "../src/entities/accesstoken.entity.ts": {
-        "version": "59a74295b49f113ab816bf86ac5d743e669292b7f26fea8866f6709f989d7df0",
+        "version": "0ef2f8b669d9936060dce763761697f426c52a4800a5f8deed8decdcfc9516de",
         "signature": "2cb4f59f692f98d5a9279fb49b53cf2e601d41ae7de0b7345182601c277994d8"
       },
       "../src/entities/cardtype.entity.ts": {
@@ -1178,7 +1178,7 @@
         "signature": "a980749987941c28c59d0caeaf3ba2688c92f04ec778780402f02192375e4984"
       },
       "../src/entities/game.entity.ts": {
-        "version": "a72c4a7b5c9c59d53c02a003728a60f8e7933dc2e5bd0f27bd01f40b750e4c95",
+        "version": "4db80f9ca6ecef86ea3a7e45d6dae56dc5008b88d4a7e943804476af19514dea",
         "signature": "b46339ca341b5911fb5c67da4470d18ef6ca6cdfd708b2469bf9d90abeef60be"
       },
       "../src/entities/bettype.entity.ts": {
@@ -1186,15 +1186,15 @@
         "signature": "f5bf84faa97309ac773db66f15ff6d7966586154983f74eef608bc453412e2b0"
       },
       "../seeds/bettypes.seed.ts": {
-        "version": "47db2eeb6c2e04b985a93d457703908967144bca7fd77fb4dccd7607a6eaa909",
+        "version": "45745bc20bc165408e7191e53953efaedfc67ce73cb482195dfc81279b3d7829",
         "signature": "d4831c29eaf3507a08ef550bbb69a48d9c783a03017b6ac5529790166e709f53"
       },
       "../seeds/cardtypes.seed.ts": {
-        "version": "de8b87b0d926af3297e41dcd82eaf810a009babae27fe27e06ac24516ce13b43",
+        "version": "6615e0d01aaca772ccfc24b1d729654d9ab4d020b69dc0b23a2ba744d0ac311b",
         "signature": "5fbba277e41f7171eb2746e2642e7cd5bec85723b6027ea82f80028da1d78d3b"
       },
       "../seeds/statuses.seed.ts": {
-        "version": "712f7ca1b0248289df58567acc7fa9ff037dd967d46e0088920dad96860d813f",
+        "version": "1ef896afbea240235c88fd6f89e31a5346cdc2849874c02d6e8d28651e9f1abb",
         "signature": "949be9c78d0d78faa30f9de6fc55adc8ef21f056a2ab0b9bc8d020f7b5a7bddb"
       },
       "../node_modules/@nestjs/common/cache/cache.constants.d.ts": {
@@ -2302,11 +2302,11 @@
         "signature": "3ac4aedfdb556b4089ab5c148005dbe22a5bc65416b3064f9a707ec39caeab3c"
       },
       "../src/auth/auth.service.ts": {
-        "version": "b7029175a779c4aa7529721e4b336b428917ad0ffaa5e329efae5ea2d29cd472",
+        "version": "61e66115dcf2e9f4ef39e708502019bd0246460635312bc101dca5243edd8297",
         "signature": "81b3394359f882d2aac5b703d58b8332ab81b9b29d865188fb6de64ace7fc142"
       },
       "../src/app.controller.ts": {
-        "version": "99374b038316ded84a2f212d37f406cfe8b6801851aacc37165cf6fb49bbf289",
+        "version": "9c5367a1c38346a61f5c19384f680edceb0edaafb5956c2a1a675c28ebbe525d",
         "signature": "a683bf487e55ac76b12463d3795f80041ded5873e1c448a674ae742e176c6688"
       },
       "../src/config/config.module.ts": {

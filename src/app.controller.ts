@@ -32,6 +32,8 @@ export class AppController {
     const jwt = auth.replace("Bearer ", "");
     const accessToken = await this.accessTokenService.getByToken(jwt);
     
+    console.log(accessToken);
+    
     if (typeof accessToken == "undefined") {
       throw new UnauthorizedException();
     }

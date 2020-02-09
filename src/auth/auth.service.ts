@@ -43,6 +43,9 @@ export class AuthService {
       const jwt = authHeaders.replace("Bearer ", "");
       const encripted = await this.configService.encryptString(jwt);
 
+      console.log(encripted);
+      console.log(234324);
+      
       const headersRequest = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
@@ -56,7 +59,7 @@ export class AuthService {
         .toPromise();
       return result.data;
     } catch (error) {
-      return { status: 0, data: error.message };
+      return { status: 0, data: error.message+'we' };
     }
   }
 }

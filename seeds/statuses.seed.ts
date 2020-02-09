@@ -15,5 +15,6 @@ export default class StatusesSeeder implements Seeder {
         { label:"LOSE" }
       ])
       .execute()
+      
   }
 }

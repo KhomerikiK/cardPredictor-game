@@ -6,7 +6,7 @@ module.exports = {
     "password": "",
     "database": "cp_game",
     "entities": ["src/**/**.entity{.ts,.js}"],
-    "synchronize": true,
+    "synchronize": false,
     "migrationsTableName": "migrations",
     "migrations": ["migrations/*.ts"],
     "cli": {

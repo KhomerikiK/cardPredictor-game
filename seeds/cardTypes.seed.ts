@@ -10,5 +10,6 @@ export default class CardTypesSeeder implements Seeder {
       .into(CardTypeEntity)
       .values([{ label: 'USER'}, { label:"SYSTEM" }])
       .execute()
+      
   }
 }
