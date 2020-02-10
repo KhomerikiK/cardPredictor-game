@@ -12,7 +12,6 @@ $ npm install
   1. cp .env.example .env
   2. fill ormconfig.js and ormconfig.json
 
-
 ## Running the app
 
 ```bash
@@ -29,6 +28,13 @@ $ npm run typeorm migration:
 $ npm run seed
 ```
 
+
+## Endpoints
+  0. /register (email, password)
+  1. /login  returns refresh refresh token
+  2. /authenticate (bearer refresh token) returns users details with refresh token
+  3. /startGame (amount, bearer refresh token) returns game stage info with refresh token
+  4. /endGame (prediction, bearer refresh token) returns game info
 
 ```
 
