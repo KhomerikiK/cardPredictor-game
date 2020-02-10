@@ -21,8 +21,8 @@ export class TransactionService {
   async _post(jwt: string, postData: any, endpoint: string) {
     const url = (await this.configService.get("WALLET_SERVICE_URL")) + endpoint;
     try {
-      console.log('send post');
-      
+      console.log("send post");
+
       const encripted = await this.configService.encryptString(jwt);
       const headersRequest = {
         "Content-Type": "application/json",

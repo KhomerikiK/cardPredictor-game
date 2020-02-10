@@ -32,7 +32,6 @@ export class AppController {
     const jwt = auth.replace("Bearer ", "");
     const accessToken = await this.accessTokenService.getByToken(jwt);
 
-
     if (typeof accessToken == "undefined") {
       throw new UnauthorizedException();
     }
@@ -40,7 +39,6 @@ export class AppController {
       throw new UnauthorizedException();
     }
 
-    
     if (accessToken.game.status.label != "PENDING") {
       return { status: 0, data: "stage has finished / not started" };
     }

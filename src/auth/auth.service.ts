@@ -24,7 +24,7 @@ export class AuthService {
       const userId = access.data.user_details.id;
       let checkActivSession = await this.gameService.checkActiveState(userId);
       if (checkActivSession.exists) {
-        let game = checkActivSession.game;        
+        let game = checkActivSession.game;
         game.walletAccessToken = access.data.access_token;
         await game.save();
         return await this.gameService.refreshGameToken(game);

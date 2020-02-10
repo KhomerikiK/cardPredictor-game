@@ -8,6 +8,8 @@ import { CardService } from "src/card/card.service";
 import { AccessTokenEntity } from "src/entities/accessToken.entity";
 import { BetTypeEntity } from "src/entities/betType.entity";
 import { TransactionService } from "src/transaction/transaction.service";
+import { RedisService } from "nestjs-redis";
+
 var crypto = require("crypto");
 
 @Injectable()
@@ -34,36 +36,33 @@ export class GameService {
     protected readonly betTypeRepository: Repository<BetTypeEntity>,
     protected readonly accesstokenService: AccessTokenService,
     protected readonly cardService: CardService,
-    protected readonly transactionService: TransactionService
+    protected readonly transactionService: TransactionService,
+    protected readonly redisService: RedisService
   ) {}
 
+  async checkActiveState(userId) {
+    const activeGame = await this.gameRepository.findOne({
+      where: {
+        finishedAt: null,
+        userId: userId
+      },
+      relations: ["status", "accessToken"]
+    });
+    let result = typeof activeGame != "undefined";
+    return { exists: result, game: activeGame };
+  }
 
-
-   async checkActiveState(userId){
-      const activeGame = await this.gameRepository.findOne({
-        where: {
-          finishedAt: null,
-          userId: userId
-        },
-        relations: ["status", "accessToken"]
-      });
-      let result = typeof activeGame != 'undefined';
-      return {exists:result, game:activeGame}
-   }
-
-   async refreshGameToken(game){
-
-    var activeToken = await this.accesstokenService.getActiveToken(game.id)
+  async refreshGameToken(game) {
+    var activeToken = await this.accesstokenService.getActiveToken(game.id);
 
     if (activeToken.exists) {
-      var refreshToken = await this.accesstokenService.refreshToken(activeToken.accessToken)
-      return {status:1, data:refreshToken}
+      var refreshToken = await this.accesstokenService.refreshToken(
+        activeToken.accessToken
+      );
+      return { status: 1, data: refreshToken };
     }
-    return {status:0 , data: activeToken}
-   }
-
-
-
+    return { status: 0, data: activeToken };
+  }
 
   /**
    * create new session of the game
@@ -71,18 +70,29 @@ export class GameService {
    */
   async createNewSession(access: any) {
     try {
+      var game = new GameEntity();
+      let redisClient = this.redisService.getClient();
       const pendingType = await this.getPendingStatus();
       const user = access.user_details;
-      var game = new GameEntity();
       var token = crypto.randomBytes(20).toString("hex");
+      /* 
+      store users balance to the redis 
+      storage to use it another moments 
+      */
+      await redisClient.set(
+        token,
+        user.balance,
+        "ex",
+        86400
+      );
 
       game.walletAccessToken = access.access_token;
       game.userId = user.id;
+      game.betAmount = 0;
       game.status = pendingType;
       game.createdAt = new Date();
       game.token = token;
-      await game.save();
-
+      await game.save();// create new game object
       const accessToken = await this.accesstokenService.createNew(game);
       return {
         status: 1,
@@ -109,14 +119,32 @@ export class GameService {
    * @param amount
    */
   async startGame(accessToken: AccessTokenEntity, amount: number) {
+    let redisClient = this.redisService.getClient();
     var game = accessToken.game;
-    const inprogressStatus = await this.getInprogressStatus();
-    game.betAmount = amount;
-    game.status = inprogressStatus;
-    await game.save();
+
     const refreshToken = await this.accesstokenService.refreshToken(
       accessToken
     );
+
+    const userBalance = await redisClient.get(game.token);
+    /* check user has enough balance */
+    if (parseFloat(userBalance) < amount) {
+      return {
+        status: 0,
+        data: {
+          message: "Insufficient funds on balance",
+          bet_mount: amount,
+          user_available_balance: userBalance,
+          game_status: game.status,
+          game_access_token: refreshToken.token
+        }
+      };
+    }
+    const inprogressStatus = await this.getInprogressStatus();
+    game.betAmount = amount;
+    game.status = inprogressStatus;
+    await game.save();//save users updated fields
+    /* generate user random card */
     const generatedCard = await this.cardService.generate("USER", game);
     return {
       status: 1,
@@ -141,6 +169,7 @@ export class GameService {
 
     const userCardValue = game.card[0].value;
     const systemCard = await this.cardService.generate("SYSTEM", game);
+    /* use associated array to determine game winner by the bet type */
     const result = this.compareOperators[prediction](
       userCardValue,
       systemCard.value
@@ -156,11 +185,7 @@ export class GameService {
       { amount: game.betAmount },
       this.WithdrawEndpoint
     );
-    console.log('----------withdraw--------------');
-    console.log(witdrawStatus);
-    console.log('----------withdraw--------------');
 
-    
     var newAccessToken = witdrawStatus.data.access_token;
     /* if money charged successfully */
     if (witdrawStatus.status) {
@@ -181,23 +206,23 @@ export class GameService {
         gameFromDb.status = status;
       }
 
-      console.log('----------status--------------');
+      /* 
+        fill finished_at field, it means that game is finished
+        fill expired at field on token it means token is expired and can never be used
+      */
       const now = new Date();
       gameFromDb.finishedAt = now;
       accessToken.expiredAt = now;
       await accessToken.save();
       await gameFromDb.save();
 
-      console.log(newAccessToken);
-      
-      let res = await this.transactionService._post(
+      /* post on specified route to log out wallet session on token */
+      await this.transactionService._post(
         newAccessToken,
         {},
         this.logOutEndpoint
       );
 
-      console.log(res);
-      
       return {
         status: 1,
         data: {

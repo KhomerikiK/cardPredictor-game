@@ -17,19 +17,28 @@ import { JwtStrategy } from "./auth/jwt.strategy";
 import { AccessTokenService } from "./access-token/access-token.service";
 import { CardService } from "./card/card.service";
 import { TransactionService } from "./transaction/transaction.service";
-
+import { RedisModule } from "nestjs-redis";
 @Module({
   imports: [
     HttpModule,
     ConfigModule.forRoot({
       configDir: path.resolve(__dirname, "..", "config")
     }),
+    /* redis module */
+    RedisModule.register({
+      host: process.env.REDIS_HOST,
+      port: parseInt(process.env.REDIS_PORT),
+      db: parseInt(process.env.REDIS_DB),
+      password: process.env.REDIS_PASSWORD
+    }),
+
     DatabaseModule.forRoot(),
     PassportModule,
     HttpModule,
+    /* jwt token module */
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: "1d" } //TODO::should be placed in db
+      signOptions: { expiresIn: "1d" }
     })
   ],
 

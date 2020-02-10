@@ -21,12 +21,10 @@ export class AccessTokenService {
    * @return token
    * */
   async store(token: string, game: GameEntity) {
-    
     var accessToken = new AccessTokenEntity();
     accessToken.game = game;
     accessToken.token = token;
     await accessToken.save();
-    
     return accessToken;
   }
 
@@ -51,10 +49,10 @@ export class AccessTokenService {
         expiredAt: null,
         game_id: game_id
       },
-      relations: ["game", "game.status", "game.card", "game.card.type"],
-    })
-    let result = typeof activeToke != 'undefined';
-    return {exists:result, accessToken:activeToke}
+      relations: ["game", "game.status", "game.card", "game.card.type"]
+    });
+    let result = typeof activeToke != "undefined";
+    return { exists: result, accessToken: activeToke };
   }
 
   /**
@@ -72,10 +70,9 @@ export class AccessTokenService {
    * @return AccessTokenEntity
    * */
   async refreshToken(accessToken: AccessTokenEntity) {
-
     await this.expire(accessToken); //expire the old accessToken
-    console.log('expired');
-    
+    console.log("expired");
+
     const payload = {
       token: accessToken.game.token,
       id: accessToken.game.id
