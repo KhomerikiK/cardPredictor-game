@@ -21,13 +21,18 @@ export class AuthService {
   async authenticate(request) {
     const access = await this.validateToken(request);
     if (access.status) {
+
       const userId = access.data.user_details.id;
       let checkActivSession = await this.gameService.checkActiveState(userId);
+
       if (checkActivSession.exists) {
+
         let game = checkActivSession.game;
         game.walletAccessToken = access.data.access_token;
         await game.save();
+
         return await this.gameService.refreshGameToken(game);
+        
       }
       return await this.gameService.createNewSession(access.data);
     }
@@ -50,12 +55,15 @@ export class AuthService {
         Authorization: `Bearer ${jwt}`,
         confirmation: `${encripted}`
       };
+
       const apiUrl =
         this.configService.get("WALLET_SERVICE_URL") +
         this.confirmationEndpoint;
+
       const result = await this.httpService
         .post(apiUrl, {}, { headers: headersRequest })
         .toPromise();
+
       return result.data;
     } catch (error) {
       return { status: 0, data: error.message + "we" };

@@ -2830,11 +2830,11 @@
         "signature": "d9b751dae526101a3530795a3d523a93f29910492c7ead8d2a3b546587035cae"
       },
       "../src/game/game.service.ts": {
-        "version": "1db6416afd579d4c1e6a89f0ce78c37a11ce7240cb2ceaa68db59a9fe269a2aa",
+        "version": "0789c46b5ced3067575540c46ca3e93726bd0bbc7acf65a6a7f0f4e817aba66e",
         "signature": "7a6821b2826522c6928f965e0af1cc6da13ef2dbc00aca3b2978a157ac85931c"
       },
       "../src/auth/auth.service.ts": {
-        "version": "107619543d82369adee90a5b52c8b0bdcff27838f93c1aaa07be2ab2c3df8bb5",
+        "version": "5e71158ff415897f62a43739cba30ce5bddcdc2084a4560c49f37f6fe587f88b",
         "signature": "f66ccbdce8a4764bb6bcc6612358de37068a72883fa48052e9e0b1d44d7768ea"
       },
       "../src/app.controller.ts": {
@@ -16912,6 +16912,7 @@
       "../node_modules/@types/minimatch/index.d.ts",
       "../node_modules/@types/glob/index.d.ts",
       "../src/config/config.service.ts",
+      "../src/access-token/access-token.service.ts",
       "../src/card/card.service.ts",
       "../src/transaction/transaction.service.ts",
       "../node_modules/@types/ioredis/index.d.ts",
@@ -17047,7 +17048,6 @@
       "../node_modules/nestjs-redis/dist/redis.module.d.ts",
       "../node_modules/nestjs-redis/dist/index.d.ts",
       "../node_modules/nestjs-redis/index.d.ts",
-      "../src/game/game.service.ts",
       "../src/auth/auth.service.ts",
       "../src/app.controller.ts",
       "../src/config/config.module.ts",
@@ -17144,7 +17144,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/access-token/access-token.service.ts"
+      "../src/game/game.service.ts"
     ]
   },
   "version": "3.7.5"

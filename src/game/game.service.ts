@@ -41,6 +41,7 @@ export class GameService {
   ) {}
 
   async checkActiveState(userId) {
+
     const activeGame = await this.gameRepository.findOne({
       where: {
         finishedAt: null,
@@ -53,6 +54,7 @@ export class GameService {
   }
 
   async refreshGameToken(game) {
+
     var activeToken = await this.accesstokenService.getActiveToken(game.id);
 
     if (activeToken.exists) {
@@ -70,6 +72,7 @@ export class GameService {
    */
   async createNewSession(access: any) {
     try {
+
       var game = new GameEntity();
       let redisClient = this.redisService.getClient();
       const pendingType = await this.getPendingStatus();
@@ -138,7 +141,7 @@ export class GameService {
           game_status: game.status,
           game_access_token: refreshToken.token
         }
-      };
+      }
     }
     const inprogressStatus = await this.getInprogressStatus();
     game.betAmount = amount;
@@ -163,6 +166,7 @@ export class GameService {
    * @param prediction
    */
   async endGame(accessToken: AccessTokenEntity, prediction: string) {
+
     var wonAmount = 0;
     var lostAmount = 0;
     var game = accessToken.game;
@@ -186,20 +190,23 @@ export class GameService {
       this.WithdrawEndpoint
     );
 
-    var newAccessToken = witdrawStatus.data.access_token;
+    var newAccessToken = witdrawStatus.data.access_token;//acces token returned from wallet service
     /* if money charged successfully */
     if (witdrawStatus.status) {
       /* if user won the game */
       if (result) {
+
         const status = await this.getWinStatuse();
         gameFromDb.status = status;
         wonAmount = game.betAmount * 2;
+
         const depositStatus = await this.transactionService._post(
           game.walletAccessToken,
           { amount: wonAmount },
           this.depositEndpoint
         );
-        newAccessToken = depositStatus.data.access_token;
+
+        newAccessToken = depositStatus.data.access_token;//acces token returned from wallet service
       } else {
         lostAmount = game.betAmount;
         const status = await this.getLoseStatuse();
